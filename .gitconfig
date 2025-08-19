@@ -1,0 +1,21 @@
+[user]
+	name = Mirosław Jakieła
+	email = 67077321+MiGoYAm@users.noreply.github.com
+
+[pull]
+	rebase = true
+
+[includeIf "gitdir:~/Projects/alergeek"]
+  path = .gitconfig-alergeek
+
+[absorb]
+    autoStageIfNothingStaged = true
+
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
