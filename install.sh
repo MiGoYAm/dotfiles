@@ -45,6 +45,11 @@ ensure_repo() {
       die "git is required to update an existing dotfiles checkout"
     fi
 
+    if [[ -n "$(git -C "$DEST_DIR" status --porcelain 2>/dev/null)" ]]; then
+      warn "$DEST_DIR has local changes; skipping repo update"
+      return
+    fi
+
     log "Updating existing repo in $DEST_DIR"
     git -C "$DEST_DIR" pull --ff-only
     return
@@ -84,48 +89,6 @@ install_brew_bundle() {
   brew bundle --file="$brewfile_path"
 }
 
-ensure_oh_my_zsh() {
-  if [[ -d "$HOME/.oh-my-zsh" ]]; then
-    return
-  fi
-
-  log "Installing Oh My Zsh"
-  RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
-
-sync_git_repo() {
-  local repo_url destination
-  repo_url="$1"
-  destination="$2"
-
-  if [[ -d "$destination/.git" ]]; then
-    log "Updating $(basename "$destination")"
-    git -C "$destination" pull --ff-only || warn "could not update $destination"
-    return
-  fi
-
-  if [[ -e "$destination" ]]; then
-    warn "$destination exists and is not a git checkout; leaving it untouched"
-    return
-  fi
-
-  log "Cloning $(basename "$destination")"
-  git clone --depth 1 "$repo_url" "$destination"
-}
-
-install_zsh_addons() {
-  local custom_dir
-  custom_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
-
-  mkdir -p "$custom_dir/themes" "$custom_dir/plugins"
-
-  sync_git_repo "https://github.com/romkatv/powerlevel10k.git" "$custom_dir/themes/powerlevel10k"
-  sync_git_repo "https://github.com/Aloxaf/fzf-tab.git" "$custom_dir/plugins/fzf-tab"
-  sync_git_repo "https://github.com/zsh-users/zsh-autosuggestions.git" "$custom_dir/plugins/zsh-autosuggestions"
-  sync_git_repo "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$custom_dir/plugins/zsh-syntax-highlighting"
-  sync_git_repo "https://github.com/zsh-users/zsh-completions.git" "$custom_dir/plugins/zsh-completions"
-}
-
 apply_stow() {
   local parent_dir package_name
   parent_dir="$(dirname "$DEST_DIR")"
@@ -139,8 +102,6 @@ main() {
   ensure_repo
   ensure_homebrew
   install_brew_bundle
-  ensure_oh_my_zsh
-  install_zsh_addons
   apply_stow
 
   log "Done. Restart your shell or run: exec zsh"

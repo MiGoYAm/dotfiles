@@ -15,7 +15,7 @@ The script:
 - clones or updates the repo in `~/dotfiles`
 - installs Homebrew if needed
 - installs packages from `Brewfile`
-- installs Oh My Zsh plus the custom theme/plugins used by `.zshrc`
+- installs Antidote for the Zsh plugin setup used by `.zshrc`
 - symlinks the repo into `$HOME` with GNU Stow
 
 ## Manual install
@@ -28,6 +28,13 @@ cd ~/dotfiles
 ./install.sh
 ```
 
+## Zsh plugins
+
+Zsh plugins are declared in `.zsh_plugins.txt` and loaded through [Antidote](https://github.com/mattmc3/antidote). The generated `.zsh_plugins.zsh` file is built on demand by `.zshrc`.
+
 ## Re-running
 
-The installer is designed to be idempotent. Re-running it updates the repo, refreshes Zsh plugins/themes, and re-applies Stow links.
+The installer is designed to be idempotent. Re-running it updates the repo, refreshes Homebrew packages, and re-applies Stow links.
+
+## Todo
+[ ] Add host on ssh to shell prompt

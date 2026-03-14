@@ -1,0 +1,7 @@
+getantidote/use-omz
+ohmyzsh/ohmyzsh path:lib
+romkatv/powerlevel10k
+Aloxaf/fzf-tab
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-completions path:src kind:fpath
+zsh-users/zsh-syntax-highlighting

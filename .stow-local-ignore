@@ -3,4 +3,7 @@ fzf-preview.sh
 README.md
 install.sh
 check-brew-linux-support.py
-.git/
+.git
+.gitignore
+.zsh_plugins.txt
+.zsh_plugins.zsh
