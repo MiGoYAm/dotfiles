@@ -3,8 +3,8 @@
   "small_model": "opencode/big-pickle",
   "plugin": [
     "@franlol/opencode-md-table-formatter@0.0.3",
-    "@mohak34/opencode-notifier@latest",
     "@alergeek-ventures/opencode@latest",
+    "@slkiser/opencode-quota",
   ],
   "mcp": {
     "context7": {
@@ -12,5 +12,8 @@
       "command": ["npx", "-y", "@upstash/context7-mcp"],
       "enabled": true,
     },
+  },
+  "permission": {
+    "websearch": "allow",
   },
 }

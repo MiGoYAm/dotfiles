@@ -99,7 +99,7 @@ apply_stow() {
 }
 
 main() {
-  ensure_repo
+  ensure_repo¬
   ensure_homebrew
   install_brew_bundle
   apply_stow

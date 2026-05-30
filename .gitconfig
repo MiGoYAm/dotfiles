@@ -6,7 +6,7 @@
 	rebase = true
 
 [includeIf "gitdir:~/Projects/alergeek"]
-  path = .gitconfig-alergeek
+	path = .gitconfig-alergeek
 
 [absorb]
     autoStageIfNothingStaged = true

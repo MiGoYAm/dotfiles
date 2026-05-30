@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 #
 # The purpose of this script is to demonstrate how to preview a file or an

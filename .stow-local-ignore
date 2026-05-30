@@ -2,7 +2,6 @@ Brewfile
 fzf-preview.sh
 README.md
 install.sh
-check-brew-linux-support.py
 .git
 .gitignore
 .zsh_plugins.txt
