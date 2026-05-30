@@ -1,3 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! command -v brew >/dev/null 2>&1; then
+  exit 0
+fi
+
+brew bundle --file=/dev/stdin <<'BREWFILE'
 tap "anomalyco/tap"
 tap "homebrew/autoupdate"
 tap "oven-sh/bun"
@@ -30,7 +39,7 @@ brew "poppler"
 brew "resvg"
 brew "ripgrep"
 brew "sevenzip"
-brew "stow"
+brew "chezmoi"
 brew "tmux"
 brew "uv"
 brew "watchman"
@@ -95,3 +104,4 @@ vscode "tamasfe.even-better-toml"
 vscode "usernamehw.errorlens"
 vscode "vscodevim.vim"
 vscode "yoavbls.pretty-ts-errors"
+BREWFILE

@@ -18,7 +18,6 @@ zstyle ':completion:*' menu no
 zstyle ':completion:*:git-checkout:*' sort false
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1A --color=always $realpath'
 # zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza -1A --color=always $realpath'
-zstyle ':fzf-tab:complete:cd:*' fzf-preview '$HOME/dotfiles/fzf-preview.sh ${(Q)realpath}'
 zstyle ':fzf-tab:complete:*:options' fzf-preview
 zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
@@ -39,7 +38,7 @@ setopt hist_find_no_dups
 export FZF_DEFAULT_OPTS='--no-separator --info=inline-right'
 
 source "$(brew --prefix antidote)/share/antidote/antidote.zsh"
-zsh_config_dir=~/dotfiles
+zsh_config_dir=~
 antidote load "${zsh_config_dir}/.zsh_plugins.txt" "${zsh_config_dir}/.zsh_plugins.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

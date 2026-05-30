@@ -1,31 +1,12 @@
 # dotfiles
 
-Personal shell, editor, and CLI setup managed with GNU Stow and Homebrew.
+Personal shell, editor, and CLI setup managed with chezmoi and Homebrew.
 
-## Quick install
-
-Run the installer with:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/MiGoYAm/dotfiles/main/install.sh | bash
-```
-
-The script:
-
-- clones or updates the repo in `~/dotfiles`
-- installs Homebrew if needed
-- installs packages from `Brewfile`
-- installs Antidote for the Zsh plugin setup used by `.zshrc`
-- symlinks the repo into `$HOME` with GNU Stow
-
-## Manual install
-
-If you want to run the steps yourself:
+## Install
 
 ```bash
 git clone https://github.com/MiGoYAm/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-./install.sh
+chezmoi init --source ~/dotfiles --apply
 ```
 
 ## Zsh plugins
@@ -34,7 +15,7 @@ Zsh plugins are declared in `.zsh_plugins.txt` and loaded through [Antidote](htt
 
 ## Re-running
 
-The installer is designed to be idempotent. Re-running it updates the repo, refreshes Homebrew packages, and re-applies Stow links.
+Re-running `chezmoi apply --source ~/dotfiles` refreshes Homebrew packages and re-applies chezmoi-managed files.
 
 ## Todo
 [ ] Add host on ssh to shell prompt
