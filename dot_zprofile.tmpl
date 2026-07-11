@@ -1,0 +1,25 @@
+{{- $cpuCores := 1 -}}
+{{- $cpuThreads := 1 -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $cpuCores = (output "sysctl" "-n" "hw.physicalcpu_max" | trim | atoi) -}}
+{{-   $cpuThreads = (output "sysctl" "-n" "hw.logicalcpu_max" | trim | atoi) -}}
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   $cpuCores = (output "sh" "-c" "lscpu --online --parse | grep --invert-match '^#' | sort --field-separator=',' --key='2,4' --unique | wc --lines" | trim | atoi) -}}
+{{-   $cpuThreads = (output "sh" "-c" "lscpu --online --parse | grep --invert-match '^#' | wc --lines" | trim | atoi) -}}
+{{- else if eq .chezmoi.os "windows" -}}
+{{-   $cpuCores = (output "pwsh.exe" "-NoProfile" "-NonInteractive" "-Command" "(Get-CimInstance -ClassName 'Win32_Processor').NumberOfCores" | trim | atoi) -}}
+{{-   $cpuThreads = (output "pwsh.exe" "-NoProfile" "-NonInteractive" "-Command" "(Get-CimInstance -ClassName 'Win32_Processor').NumberOfLogicalProcessors" | trim | atoi) -}}
+{{- end -}}
+{{- $mixCompilePartitions := max 1 (div $cpuCores 2) -}}
+
+if ! command -v brew >/dev/null 2>&1; then
+  export PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin"
+  eval "$(brew shellenv)"
+fi
+
+export EDITOR=nvim
+export NODE_COMPILE_CACHE=~/.cache/nodejs-compile-cache
+export ERL_AFLAGS="-kernel shell_history enabled"
+export HOMEBREW_NO_ENV_HINTS=1
+export MIX_OS_DEPS_COMPILE_PARTITION_COUNT={{ $mixCompilePartitions }}
+export OPENCODE_ENABLE_EXA=1
