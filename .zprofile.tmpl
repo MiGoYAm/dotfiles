@@ -1,0 +1,21 @@
+{% set cpu_cores_raw = exec(command="sh -c 'sysctl -n hw.physicalcpu_max 2>/dev/null || lscpu -p 2>/dev/null | grep -v ^# | sort -u -t, -k 2,3 | wc -l 2>/dev/null | grep -v ^0$ || nproc 2>/dev/null || grep -c ^processor /proc/cpuinfo 2>/dev/null || echo 1'") | default(value="1") | trim %}
+{% set cpu_cores = cpu_cores_raw | int %}
+{% set cpu_threads_raw = exec(command="sh -c 'sysctl -n hw.logicalcpu_max 2>/dev/null || nproc 2>/dev/null || grep -c ^processor /proc/cpuinfo 2>/dev/null || echo 1'") | default(value="1") | trim %}
+{% set cpu_threads = cpu_threads_raw | int %}
+{% if cpu_cores > 1 %}
+{% set mix_partitions = (cpu_cores / 2) | int %}
+{% else %}
+{% set mix_partitions = 1 %}
+{% endif %}
+
+if ! command -v brew >/dev/null 2>&1; then
+  export PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin"
+  eval "$(brew shellenv)"
+fi
+
+export EDITOR=nvim
+export NODE_COMPILE_CACHE=~/.cache/nodejs-compile-cache
+export ERL_AFLAGS="-kernel shell_history enabled"
+export HOMEBREW_NO_ENV_HINTS=1
+export MIX_OS_DEPS_COMPILE_PARTITION_COUNT={{ mix_partitions }}
+export OPENCODE_ENABLE_EXA=1

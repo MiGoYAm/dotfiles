@@ -1,21 +1,30 @@
 # dotfiles
 
-Personal shell, editor, and CLI setup managed with chezmoi and Homebrew.
-
+Personal shell, editor, and CLI setup managed with **mise bootstrap**
 ## Install
 
 ```bash
-git clone https://github.com/MiGoYAm/dotfiles.git ~/dotfiles
-chezmoi init --source ~/dotfiles --apply
+curl https://mise.run | sh
+
+mise bootstrap --from https://github.com/MiGoYAm/dotfiles.git --yes
 ```
 
-## Zsh plugins
 
-Zsh plugins are declared in `.zsh_plugins.txt` and loaded through [Antidote](https://github.com/mattmc3/antidote). The generated `.zsh_plugins.zsh` file is built on demand by `.zshrc`.
+
 
 ## Re-running
 
-Re-running `chezmoi apply --source ~/dotfiles` refreshes Homebrew packages and re-applies chezmoi-managed files.
+```bash
+mise bootstrap status --missing
+mise bootstrap dotfiles status
+mise bootstrap packages status
+mise bootstrap macos defaults status
+mise bootstrap mise-shell-activate status
+
+mise bootstrap --force-dotfiles --yes
+mise bootstrap --skip repos --force-dotfiles
+mise bootstrap dotfiles apply --force --yes
+```
 
 ## Todo
-[ ] Add host on ssh to shell prompt
+- [ ] Add host on ssh to shell prompt
