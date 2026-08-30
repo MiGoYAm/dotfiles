@@ -37,16 +37,27 @@ setopt hist_find_no_dups
 
 export FZF_DEFAULT_OPTS='--no-separator --info=inline-right'
 
-source "$(brew --prefix antidote)/share/antidote/antidote.zsh"
-zsh_config_dir=~
-antidote load "${zsh_config_dir}/.zsh_plugins.txt" "${zsh_config_dir}/.zsh_plugins.zsh"
+# Tylko dla interaktywnej sesji - chroni GDM/niri-session (zsh -c) przed ciężkimi evalami i brakiem PATH
+if [[ -o interactive ]]; then
+  if command -v brew >/dev/null 2>&1; then
+    source "$(brew --prefix antidote 2>/dev/null)/share/antidote/antidote.zsh" 2>/dev/null || source "/home/linuxbrew/.linuxbrew/share/antidote/antidote.zsh" 2>/dev/null || true
+  else
+    source "/home/linuxbrew/.linuxbrew/share/antidote/antidote.zsh" 2>/dev/null || source "/opt/homebrew/share/antidote/antidote.zsh" 2>/dev/null || true
+  fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+  zsh_config_dir=~
+  # antidote definiuje funkcję antidote po source, więc sprawdź funkcję
+  if (( $+functions[antidote] )) || command -v antidote >/dev/null 2>&1; then
+    antidote load "${zsh_config_dir}/.zsh_plugins.txt" "${zsh_config_dir}/.zsh_plugins.zsh"
+  fi
 
-alias ls="eza"
+  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-eval "$(zoxide init --cmd cd zsh)"
-eval "$(fzf --zsh)"
-eval "$(mise activate zsh)"
-eval "$(wt config shell init zsh)" 
+  alias ls="eza"
+
+  command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init --cmd cd zsh)"
+  command -v fzf >/dev/null 2>&1 && eval "$(fzf --zsh)"
+  command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
+  command -v wt >/dev/null 2>&1 && eval "$(wt config shell init zsh)"
+fi
