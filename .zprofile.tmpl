@@ -13,6 +13,10 @@ if ! command -v brew >/dev/null 2>&1; then
   eval "$(brew shellenv)"
 fi
 
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+  export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
 export EDITOR=nvim
 export NODE_COMPILE_CACHE=~/.cache/nodejs-compile-cache
 export ERL_AFLAGS="-kernel shell_history enabled"

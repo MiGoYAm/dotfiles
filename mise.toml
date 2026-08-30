@@ -7,6 +7,7 @@ idiomatic_version_file_enable_tools = ["node"]
 node = "latest"
 pnpm = "latest"
 aube = "latest"
+npm = "latest"
 
 [bootstrap.repos]
 "~/dotfiles" = { url = "https://github.com/MiGoYAm/dotfiles.git", ref = "main" }
