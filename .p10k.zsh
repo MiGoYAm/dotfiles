@@ -27,7 +27,7 @@
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
   # Left prompt segments.
-  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(prompt_char dir vcs)
+  typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(prompt_char context dir vcs)
   # Right prompt segments.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
@@ -37,6 +37,16 @@
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SUBSEGMENT_SEPARATOR=' '  # separate segments with a space
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SEGMENT_SEPARATOR=        # no end-of-line symbol
   typeset -g POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION=           # no segment icons
+
+  local grey=242
+  local white=7
+
+  # Context format when root: user@host. The first part white, the rest grey.
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$white}%n%f%F{$grey}@%m%f"
+  # Context format when not root: user@host. The whole thing grey.
+  typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE="%F{$grey}%n@%m%f"
+  # Don't show context unless running with privileges or in SSH.
+  typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
 
   # Green prompt symbol if the last command succeeded.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=green

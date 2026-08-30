@@ -1,10 +1,11 @@
 font-size = 14.5
 # theme = dark:"Adwaita Dark",light:Adwaita
-theme = Citruszest
-# carbonfox, deep, Flexoki Dark, Framer
+theme = Ardoise
+# Citruszest, carbonfox, deep, Flexoki Dark, Framer, Builtin Tango Dark, 0x96f, Ardoise
 window-save-state = always
 quit-after-last-window-closed = true
 window-padding-balance = true
 window-padding-color = extend
+adjust-cursor-thickness = 2
 
 # shell-integration-features = ssh-terminfo
