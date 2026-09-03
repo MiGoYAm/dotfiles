@@ -7,6 +7,7 @@ idiomatic_version_file_enable_tools = ["node"]
 node = "latest"
 pnpm = "latest"
 aube = "latest"
+fnox = "latest"
 npm = "latest"
 
 [bootstrap.repos]
@@ -19,6 +20,7 @@ npm = "latest"
 
 [bootstrap.packages]
 "brew:openssl@3" = "latest"
+"brew:1password-cli" = "latest"
 "brew:agent-browser" = "latest"
 "brew:ansible" = "latest"
 "brew:antidote" = "latest"
@@ -153,9 +155,35 @@ sandbox_workspace_write.network_access = true
 [mcp_servers.context7]
 type = "http"
 url = "https://mcp.context7.com/mcp"
+bearer_token_env_var = "CONTEXT7_API_KEY"
 """ }
 
+[tasks.setup-secrets]
+description = "Logowanie atuin i weryfikacja sekretów z 1Password (fnox)"
+run = """
+if ! command -v fnox >/dev/null 2>&1; then
+  echo "fnox nie jest zainstalowany (uruchom: mise install)" >&2
+  exit 1
+fi
+if atuin status 2>/dev/null | grep -q "Username:"; then
+  echo "atuin: już zalogowany, pomijam login"
+else
+  echo "atuin: logowanie..."
+  atuin login \
+    -u "$(fnox get ATUIN_USERNAME)" \
+    -p "$(fnox get ATUIN_PASSWORD)" \
+    -k "$(fnox get ATUIN_KEY)"
+fi
+if [ -n "$(fnox get CONTEXT7_API_KEY 2>/dev/null)" ]; then
+  echo "CONTEXT7_API_KEY: OK"
+else
+  echo "OSTRZEŻENIE: CONTEXT7_API_KEY nie rozwiązuje się z 1Password" >&2
+  exit 1
+fi
+"""
+
 [tasks.bootstrap]
+depends = ["setup-secrets"]
 run = """
 if command -v code >/dev/null 2>&1; then
   echo "Installing VS Code extensions..."
