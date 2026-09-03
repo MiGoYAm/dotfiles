@@ -1,0 +1,114 @@
+{
+  "version": 3,
+  "skills": {
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "skillFolderHash": "82def67855a0d2aad7794207951820fa5422fdb0",
+      "installedAt": "2026-09-03T13:32:50.697Z",
+      "updatedAt": "2026-09-03T13:32:50.697Z"
+    },
+    "btca-local": {
+      "source": "davis7dotsh/better-context",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/davis7dotsh/better-context.git",
+      "skillPath": "skills/btca-local/SKILL.md",
+      "skillFolderHash": "672717a655579407e9fb716f0b28f8b8a88d9a6a",
+      "installedAt": "2026-08-31T18:51:04.834Z",
+      "updatedAt": "2026-08-31T18:51:04.834Z"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/skills.git",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "skillFolderHash": "0d5b74a14bdf3ebcd64f352d06376a2ef05ed296",
+      "installedAt": "2026-09-03T13:32:50.697Z",
+      "updatedAt": "2026-09-03T13:32:50.697Z"
+    },
+    "grill-me": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/grill-me/SKILL.md",
+      "skillFolderHash": "3df14e2d3a89459bf300614be9247e3ce74798f8",
+      "installedAt": "2026-09-03T13:32:50.697Z",
+      "updatedAt": "2026-09-03T13:32:50.697Z"
+    },
+    "improve-codebase-architecture": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
+      "skillFolderHash": "3d35cd438f4067b03c8b3792e038960e4ac11526",
+      "installedAt": "2026-09-03T13:32:50.697Z",
+      "updatedAt": "2026-09-03T13:32:50.697Z"
+    },
+    "thermo-nuclear-code-quality-review": {
+      "source": "cursor/plugins",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cursor/plugins.git",
+      "skillPath": "cursor-team-kit/skills/thermo-nuclear-code-quality-review/SKILL.md",
+      "skillFolderHash": "d9c8935dd560b3b6f5941247d04a1843f8c7cc35",
+      "installedAt": "2026-09-03T13:30:24.911Z",
+      "updatedAt": "2026-09-03T13:30:24.911Z"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/composition-patterns/SKILL.md",
+      "skillFolderHash": "bf90d0a4b83ea054653350f9c67f6de235d3a368",
+      "installedAt": "2026-09-03T13:30:24.911Z",
+      "updatedAt": "2026-09-03T13:30:24.911Z"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "skillFolderHash": "343db72180d05814949fef7d46be96b5c6ee86b3",
+      "installedAt": "2026-09-03T13:30:24.911Z",
+      "updatedAt": "2026-09-03T13:30:24.911Z"
+    },
+    "web-animation-design": {
+      "source": "connorads/dotfiles",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/connorads/dotfiles.git",
+      "skillPath": ".config/skills/vendor/.agents/skills/web-animation-design/SKILL.md",
+      "skillFolderHash": "22563ae21af6e63ab954e178703f74fb709eb68c",
+      "installedAt": "2026-09-03T13:32:50.697Z",
+      "updatedAt": "2026-09-03T13:32:50.697Z"
+    },
+    "grill-with-docs": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
+      "skillFolderHash": "eedaf2562c83155115e9c649fa3ecaac2e10e81d",
+      "pluginName": "mattpocock-skills",
+      "installedAt": "2026-09-03T13:50:50.998Z",
+      "updatedAt": "2026-09-03T13:50:50.998Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "antigravity",
+    "antigravity-cli",
+    "cline",
+    "codex",
+    "cursor",
+    "deepagents",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-code-cli",
+    "opencode",
+    "warp",
+    "zed"
+  ]
+}

@@ -147,20 +147,12 @@ three_finger_drag = false
 "~/.codex/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 "~/.codex/config.toml" = { block = """
 model_instructions_file = "~/dotfiles/.codex/system-prompt-less.md"
+features.memories = false
+sandbox_workspace_write.network_access = true
 
 [mcp_servers.context7]
 type = "http"
 url = "https://mcp.context7.com/mcp"
-
-[features]
-memories = false
-
-[memories]
-generate_memories = false
-use_memories = false
-
-[sandbox_workspace_write]
-network_access = true
 """ }
 
 [tasks.bootstrap]
