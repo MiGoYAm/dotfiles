@@ -1,7 +1,3 @@
-# Sekrety trzymane w 1Password (vault "Private") — ten plik zawiera tylko referencje.
-# Wymaga: fnox (mise), op (1password-cli), zalogowanego 1Password (`op signin`).
-# Weryfikacja: fnox get CONTEXT7_API_KEY
-
 [providers.op]
 type = "1password"
 vault = "Personal"
@@ -10,6 +6,4 @@ vault = "Personal"
 ATUIN_USERNAME = { provider = "op", value = "Atuin/username" }
 ATUIN_PASSWORD = { provider = "op", value = "Atuin/password" }
 ATUIN_KEY = { provider = "op", value = "Atuin/key" }
-# Klucz API Context7 (ctx7sk...). Domyślnie brane jest pole "password".
-# Jeśli Twój item trzyma klucz w polu "credential", zmień na: value = "Context7/credential"
-CONTEXT7_API_KEY = { provider = "op", value = "Context7" }
+CONTEXT7_API_KEY = { provider = "op", value = "Context7/apikey" }

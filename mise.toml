@@ -147,7 +147,7 @@ three_finger_drag = false
 "~/.config/opencode/opencode.jsonc" = {}
 "~/.config/opencode/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 "~/.codex/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
-"~/.codex/config.toml" = { block = """
+"~/.codex/config.toml/defaults" = { block = """
 model_instructions_file = "~/dotfiles/.codex/system-prompt-less.md"
 features.memories = false
 sandbox_workspace_write.network_access = true
@@ -155,35 +155,23 @@ sandbox_workspace_write.network_access = true
 [mcp_servers.context7]
 type = "http"
 url = "https://mcp.context7.com/mcp"
-bearer_token_env_var = "CONTEXT7_API_KEY"
-""" }
+http_headers = { Authorization = "Bearer {{ get_env(name="CONTEXT7_API_KEY") }}" }
+""", template = "tera" }
 
-[tasks.setup-secrets]
-description = "Logowanie atuin i weryfikacja sekretów z 1Password (fnox)"
+[tasks.login-atuin]
+description = "Logowanie atuin"
 run = """
-if ! command -v fnox >/dev/null 2>&1; then
-  echo "fnox nie jest zainstalowany (uruchom: mise install)" >&2
-  exit 1
-fi
 if atuin status 2>/dev/null | grep -q "Username:"; then
   echo "atuin: już zalogowany, pomijam login"
 else
-  echo "atuin: logowanie..."
   atuin login \
-    -u "$(fnox get ATUIN_USERNAME)" \
-    -p "$(fnox get ATUIN_PASSWORD)" \
-    -k "$(fnox get ATUIN_KEY)"
-fi
-if [ -n "$(fnox get CONTEXT7_API_KEY 2>/dev/null)" ]; then
-  echo "CONTEXT7_API_KEY: OK"
-else
-  echo "OSTRZEŻENIE: CONTEXT7_API_KEY nie rozwiązuje się z 1Password" >&2
-  exit 1
+    -u "$ATUIN_USERNAME" \
+    -p "$ATUIN_PASSWORD" \
+    -k "$ATUIN_KEY"
 fi
 """
 
 [tasks.bootstrap]
-depends = ["setup-secrets"]
 run = """
 if command -v code >/dev/null 2>&1; then
   echo "Installing VS Code extensions..."
