@@ -19,8 +19,10 @@ npm = "latest"
 "oven-sh/bun" = "https://github.com/oven-sh/homebrew-bun.git"
 
 [bootstrap.packages]
+"apt:zsh" = "latest"
+"dnf:zsh" = "latest"
+
 "brew:openssl@3" = "latest"
-"brew:1password-cli" = "latest"
 "brew:agent-browser" = "latest"
 "brew:ansible" = "latest"
 "brew:antidote" = "latest"
@@ -59,10 +61,10 @@ npm = "latest"
 "brew:anomalyco/tap/opencode" = "latest"
 "brew:oven-sh/bun/bun" = "latest"
 
+"brew-cask:1password-cli" = "latest"
 "brew-cask:antigravity" = "latest"
 "brew-cask:codex" = "latest"
 "brew-cask:codex-app" = "latest"
-"brew-cask:dockdoor" = "latest"
 "brew-cask:docker-desktop" = "latest"
 "brew-cask:figma" = "latest"
 "brew-cask:font-cascadia-code" = "latest"
@@ -92,6 +94,9 @@ npm = "latest"
 "brew-cask:visual-studio-code" = "latest"
 "brew-cask:zed" = "latest"
 "brew-cask:zen" = "latest"
+
+[bootstrap.user]
+login_shell = "/bin/zsh"
 
 [bootstrap.mise_shell_activate]
 zshrc = "activate"
