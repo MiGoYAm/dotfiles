@@ -163,6 +163,12 @@ url = "https://mcp.context7.com/mcp"
 http_headers = { Authorization = "Bearer {{ get_env(name="CONTEXT7_API_KEY") }}" }
 """, template = "tera" }
 
+[tasks.skills]
+run = """
+export DISABLE_TELEMETRY=1
+npx -y skills@latest update -g -y
+"""
+
 [tasks.login-atuin]
 description = "Logowanie atuin"
 run = """
