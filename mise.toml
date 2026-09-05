@@ -148,7 +148,9 @@ three_finger_drag = false
 "~/.config/niri/config.kdl" = {}
 "~/.config/quickshell" = {}
 
-"~/.agents" = {}
+"~/.agents/AGENTS.md" = {}
+"~/.agents/.skill-lock.json" = {}
+"~/.agents/skills/" = { mode = "symlink-each" }
 "~/.config/opencode/opencode.jsonc" = {}
 "~/.config/opencode/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 "~/.codex/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
