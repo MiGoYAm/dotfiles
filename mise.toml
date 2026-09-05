@@ -148,9 +148,7 @@ three_finger_drag = false
 "~/.config/niri/config.kdl" = {}
 "~/.config/quickshell" = {}
 
-"~/.agents/AGENTS.md" = {}
-"~/.agents/.skill-lock.json" = {}
-"~/.agents/skills/" = { mode = "symlink-each" }
+"~/.agents" = {}
 "~/.config/opencode/opencode.jsonc" = {}
 "~/.config/opencode/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 "~/.codex/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
@@ -166,12 +164,6 @@ url = "https://mcp.context7.com/mcp"
 http_headers = { Authorization = "Bearer {{ get_env(name="CONTEXT7_API_KEY") }}" }
 {% endif %}
 """, template = "tera" }
-
-[tasks.skills]
-run = """
-export DISABLE_TELEMETRY=1
-npx -y skills@latest update -g -y
-"""
 
 [tasks.login-atuin]
 description = "Logowanie atuin"
