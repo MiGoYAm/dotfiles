@@ -1,15 +1,6 @@
 {
   "version": 3,
   "skills": {
-    "agent-browser": {
-      "source": "vercel-labs/agent-browser",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
-      "skillPath": "skills/agent-browser/SKILL.md",
-      "skillFolderHash": "82def67855a0d2aad7794207951820fa5422fdb0",
-      "installedAt": "2026-09-03T13:32:50.697Z",
-      "updatedAt": "2026-09-05T11:51:02.847Z"
-    },
     "btca-local": {
       "source": "davis7dotsh/better-context",
       "sourceType": "github",

@@ -23,7 +23,6 @@ npm = "latest"
 "dnf:zsh" = "latest"
 
 "brew:openssl@3" = "latest"
-"brew:agent-browser" = "latest"
 "brew:ansible" = "latest"
 "brew:antidote" = "latest"
 "brew:atuin" = "latest"
