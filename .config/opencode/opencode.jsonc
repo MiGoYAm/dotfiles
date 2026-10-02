@@ -6,7 +6,6 @@
     },
   },
   "plugins": [
-    "@franlol/opencode-md-table-formatter",
     "@alergeek-ventures/opencode@latest",
   ],
   "mcp": {
