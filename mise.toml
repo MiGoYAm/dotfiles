@@ -153,7 +153,6 @@ three_finger_drag = false
 "~/.config/opencode/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 "~/.codex/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 "~/.codex/config.toml/defaults" = { block = """
-model_instructions_file = "~/dotfiles/.codex/system-prompt-less.md"
 features.memories = false
 sandbox_workspace_write.network_access = true
 

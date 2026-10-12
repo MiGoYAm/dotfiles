@@ -1,6 +1,7 @@
 ---
 name: btca-local
-description: Invoke this skill when the user says "use btca"
+description: Use this skill when the user wants to search git repos cloned onto this machine.
+disable-model-invocation: true
 ---
 
 # BTCA Local
