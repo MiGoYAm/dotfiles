@@ -132,7 +132,11 @@ three_finger_drag = false
 "com.apple.dock" = { launchanim = true, "minimize-to-application" = true, mineffect = "scale", "expose-group-apps" = true }
 "com.apple.AppleMultitouchTrackpad" = { TrackpadRightClick = true }
 
+[bootstrap.secrets]
+context7_api_key = { env = "CONTEXT7_API_KEY", description = "Context7 MCP API key" }
+
 [dotfiles]
+"~/.codex/config.toml/context7" = { source = ".codex/context7.toml", template = "tera", merge = "missing" }
 "~/.zshrc" = {}
 "~/.zprofile" = { source = "~/dotfiles/.zprofile.tmpl", mode = "template" }
 "~/.zsh_plugins.txt" = {}
@@ -152,17 +156,6 @@ three_finger_drag = false
 "~/.config/opencode/opencode.jsonc" = {}
 "~/.config/opencode/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 "~/.codex/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
-"~/.codex/config.toml/defaults" = { block = """
-features.memories = false
-sandbox_workspace_write.network_access = true
-
-[mcp_servers.context7]
-type = "http"
-url = "https://mcp.context7.com/mcp"
-{% if get_env(name="CONTEXT7_API_KEY", default=none) %}
-http_headers = { Authorization = "Bearer {{ get_env(name="CONTEXT7_API_KEY") }}" }
-{% endif %}
-""", template = "tera" }
 
 [tasks.login-atuin]
 description = "Logowanie atuin"
