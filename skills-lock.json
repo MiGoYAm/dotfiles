@@ -1,47 +1,60 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
+    "break-ui": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "skillPath": "skills/break-ui/SKILL.md",
+      "computedHash": "accfc40025b4cc57475bebdcef52153a1598beec2794d6f11dec5cbbd79481c9"
+    },
+    "make-evergreen": {
+      "source": "kosciak9/wave-os",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "modules/home/agents/skills/make-evergreen/SKILL.md",
+      "computedHash": "7c549b26f9beda795e5aa47497f2e0b855e80f702c4a9e19d63125c95067a597"
+    },
     "principle-boundary-discipline": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "skillPath": "pstack/skills/principle-boundary-discipline/SKILL.md",
-      "computedHash": "51f995752ff3bad613526eb7779872e01d01ac141a88c9ca050075a074ee5b70"
+      "computedHash": ""
     },
     "principle-laziness-protocol": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "skillPath": "pstack/skills/principle-laziness-protocol/SKILL.md",
-      "computedHash": "5c6a19fca468569ee4f31fe71148a1c09e36d4b4c7d3ee30d05ebc7c4e840ea8"
+      "computedHash": ""
     },
     "principle-minimize-reader-load": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "skillPath": "pstack/skills/principle-minimize-reader-load/SKILL.md",
-      "computedHash": "31dddf8eec76cd18a3b314d7343d783e35166344b4a89f0c5a07a90ed1d26539"
+      "computedHash": "7f622bdbafaf5392e288194b8807e6a2f85c6efc562d47af4dc5407c4030c8b8"
     },
     "principle-model-the-domain": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "skillPath": "pstack/skills/principle-model-the-domain/SKILL.md",
-      "computedHash": "7bf96c26a8d4a064488a534e5a9e75cabafa6bdc8c486529ab02d746b8796801"
+      "computedHash": ""
     },
     "principle-redesign-from-first-principles": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "skillPath": "pstack/skills/principle-redesign-from-first-principles/SKILL.md",
-      "computedHash": "f627292d04bdd447c5e1dcce7b8fbd28906d9cbab44498c81a9d8c017d055ae4"
+      "computedHash": "c6b2348402c9c1a4d3b43ab695ad8dbb6a92b19e02e08f6395146ab9b1b61ce9"
     },
     "principle-separate-before-serializing-shared-state": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "skillPath": "pstack/skills/principle-separate-before-serializing-shared-state/SKILL.md",
-      "computedHash": "d372812c2617e5226df5bd60950dd9d3e8f5758a9a1e4fefc63114ad53253769"
+      "computedHash": "249a412c63e343c56887d582a68024a19da5531d6381f062c16c6d90230d73c3"
     },
     "principle-subtract-before-you-add": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "skillPath": "pstack/skills/principle-subtract-before-you-add/SKILL.md",
-      "computedHash": "93ef4445c6dc6c71256f4c5d3e965097dccd037019041468298095670c112fe7"
+      "computedHash": "97e61b7e5e8fa4aa1673b1d1d3a5508f5f36cc2f888866caf68992469569171e"
     }
   }
 }
