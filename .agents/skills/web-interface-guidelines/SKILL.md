@@ -1,13 +1,9 @@
 ---
+name: web-interface-guidelines
 description: Review UI code for Vercel Web Interface Guidelines compliance
-argument-hint: <file-or-pattern>
 ---
 
 # Web Interface Guidelines
-
-Review these files for compliance: $ARGUMENTS
-
-Read files, check against rules below. Output concise but comprehensive—sacrifice grammar for brevity. High signal-to-noise.
 
 ## Rules
 
@@ -153,27 +149,3 @@ Read files, check against rules below. Output concise but comprehensive—sacrif
 - Icon buttons without `aria-label`
 - Hardcoded date/number formats (use `Intl.*`)
 - `autoFocus` without clear justification
-
-## Output Format
-
-Group by file. Use `file:line` format (VS Code clickable). Terse findings.
-
-```text
-## src/Button.tsx
-
-src/Button.tsx:42 - icon button missing aria-label
-src/Button.tsx:18 - input lacks label
-src/Button.tsx:55 - animation missing prefers-reduced-motion
-src/Button.tsx:67 - transition: all → list properties
-
-## src/Modal.tsx
-
-src/Modal.tsx:12 - missing overscroll-behavior: contain
-src/Modal.tsx:34 - "..." → "…"
-
-## src/Card.tsx
-
-✓ pass
-```
-
-State issue + location. Skip explanation unless fix non-obvious. No preamble.
