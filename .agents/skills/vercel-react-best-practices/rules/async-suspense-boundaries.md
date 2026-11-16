@@ -7,6 +7,10 @@ tags: async, suspense, streaming, layout-shift
 
 ## Strategic Suspense Boundaries
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/nextjs-no-use-search-params-without-suspense`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Instead of awaiting data in async components before returning JSX, use Suspense boundaries to show the wrapper UI faster while data loads.
 
 **Incorrect (wrapper blocked by data fetching):**

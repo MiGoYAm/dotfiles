@@ -7,6 +7,10 @@ tags: advanced, hooks, useEffectEvent, refs, optimization
 
 ## useEffectEvent for Stable Callback Refs
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/prefer-use-effect-event`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Access latest values in callbacks without adding them to dependency arrays. Prevents effect re-runs while avoiding stale closures.
 
 **Incorrect (effect re-runs on every callback change):**

@@ -7,6 +7,10 @@ tags: server, io, performance, next.js, route-handlers, og-image
 
 ## Hoist Static I/O to Module Level
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-hoist-static-io`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (avoids repeated file/network I/O per request)**
 
 When loading static assets (fonts, logos, images, config files) in route handlers or server functions, hoist the I/O operation to module level. Module-level code runs once when the module is first imported, not on every request. This eliminates redundant file system reads or network fetches that would otherwise run on every invocation.

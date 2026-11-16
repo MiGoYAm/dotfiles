@@ -7,6 +7,10 @@ tags: rerender, useMemo, useEffect, dependencies, optimization
 
 ## Split Combined Hook Computations
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 When a hook contains multiple independent tasks with different dependencies, split them into separate hooks. A combined hook reruns all tasks when any dependency changes, even if some tasks don't use the changed value.
 
 **Incorrect (changing `sortOrder` recomputes filtering):**

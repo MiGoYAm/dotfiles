@@ -7,6 +7,10 @@ tags: rerender, useEffect, dependencies, optimization
 
 ## Narrow Effect Dependencies
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-dependencies`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Specify primitive dependencies instead of objects to minimize effect re-runs.
 
 **Incorrect (re-runs on any user field change):**

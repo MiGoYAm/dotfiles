@@ -7,6 +7,10 @@ tags: server, async, logging, analytics, side-effects
 
 ## Use after() for Non-Blocking Operations
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-after-nonblocking`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Use Next.js's `after()` to schedule work that should execute after a response is sent. This prevents logging, analytics, and other side effects from blocking the response.
 
 **Incorrect (blocks response):**

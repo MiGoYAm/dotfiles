@@ -7,6 +7,10 @@ tags: javascript, loops, optimization, caching
 
 ## Cache Property Access in Loops
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-cache-property-access`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Cache object property lookups in hot paths.
 
 **Incorrect (3 lookups × N iterations):**

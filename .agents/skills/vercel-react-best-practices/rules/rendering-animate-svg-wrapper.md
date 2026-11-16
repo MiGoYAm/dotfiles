@@ -7,6 +7,10 @@ tags: rendering, svg, css, animation, performance
 
 ## Animate SVG Wrapper Instead of SVG Element
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Many browsers don't have hardware acceleration for CSS3 animations on SVG elements. Wrap SVG in a `<div>` and animate the wrapper instead.
 
 **Incorrect (animating SVG directly - no hardware acceleration):**

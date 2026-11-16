@@ -7,6 +7,10 @@ tags: rendering, jsx, static, optimization
 
 ## Hoist Static JSX Elements
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rendering-hoist-jsx`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Extract static JSX outside components to avoid re-creation.
 
 **Incorrect (recreates element every render):**

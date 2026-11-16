@@ -7,6 +7,10 @@ tags: javascript, arrays, performance, sorting, algorithms
 
 ## Use Loop for Min/Max Instead of Sort
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-min-max-loop`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Finding the smallest or largest element only requires a single pass through the array. Sorting is wasteful and slower.
 
 **Incorrect (O(n log n) - sort to find latest):**

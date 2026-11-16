@@ -7,6 +7,10 @@ tags: javascript, cache, memoization, performance
 
 ## Cache Repeated Function Calls
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Use a module-level Map to cache function results when the same function is called repeatedly with the same inputs during render.
 
 **Incorrect (redundant computation):**

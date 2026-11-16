@@ -1,0 +1,384 @@
+[
+  {
+    "rule": "react/exhaustive-deps",
+    "guideline": "advanced-effect-event-deps"
+  },
+  {
+    "rule": "react/static-components",
+    "guideline": "rerender-no-inline-components"
+  },
+  {
+    "rule": "react/no-object-type-as-default-prop",
+    "guideline": "rerender-memo-with-default-value",
+    "imports": [
+      "memo"
+    ]
+  },
+  {
+    "rule": "react/no-deriving-state-in-effects",
+    "guideline": "rerender-derived-state-no-effect",
+    "imports": [
+      "useState",
+      "useEffect"
+    ]
+  },
+  {
+    "rule": "unicorn/no-array-sort",
+    "guideline": "js-tosorted-immutable",
+    "imports": [
+      "useMemo"
+    ]
+  },
+  {
+    "rule": "nextjs/no-sync-scripts",
+    "guideline": "rendering-script-defer-async"
+  },
+  {
+    "rule": "react-doctor/no-event-handler",
+    "guideline": "rerender-move-effect-to-event",
+    "imports": [
+      "useState",
+      "useEffect",
+      "useContext"
+    ]
+  },
+  {
+    "rule": "react-doctor/rerender-lazy-state-init",
+    "guideline": "rerender-lazy-state-init",
+    "imports": [
+      "useState"
+    ]
+  },
+  {
+    "rule": "react-doctor/server-sequential-independent-await",
+    "guideline": "async-api-routes"
+  },
+  {
+    "rule": "react-doctor/async-defer-await",
+    "guideline": "async-defer-await"
+  },
+  {
+    "rule": "react-doctor/client-passive-event-listeners",
+    "guideline": "client-passive-event-listeners",
+    "imports": [
+      "useEffect"
+    ],
+    "accepted": [
+      "document.addEventListener(\"wheel\", event=>event.preventDefault(), {passive:false});"
+    ]
+  },
+  {
+    "rule": "react-doctor/no-fetch-in-effect",
+    "guideline": "client-swr-dedup",
+    "imports": [
+      "useState",
+      "useEffect"
+    ]
+  },
+  {
+    "rule": "react-doctor/server-auth-actions",
+    "guideline": "server-auth-actions"
+  },
+  {
+    "rule": "react-doctor/server-cache-with-object-literal",
+    "guideline": "server-cache-react",
+    "imports": [
+      "cache"
+    ],
+    "accepted": [
+      "import {cache} from \"react\";const read=cache(async params=>params.id);const params={id:1};read(params);read(params);"
+    ]
+  },
+  {
+    "rule": "react-doctor/server-dedup-props",
+    "guideline": "server-dedup-props"
+  },
+  {
+    "rule": "react-doctor/server-hoist-static-io",
+    "guideline": "server-hoist-static-io"
+  },
+  {
+    "rule": "react/globals",
+    "guideline": "server-no-shared-module-state",
+    "accepted": [
+      "const cache=new Map();export function read(id){if(cache.has(id))return cache.get(id);const result={id};cache.set(id,result);return result;}"
+    ]
+  },
+  {
+    "rule": "react-doctor/rerender-defer-reads-hook",
+    "guideline": "rerender-defer-reads"
+  },
+  {
+    "rule": "react-doctor/rerender-memo-before-early-return",
+    "guideline": "rerender-memo",
+    "imports": [
+      "memo",
+      "useMemo"
+    ]
+  },
+  {
+    "rule": "react-doctor/rerender-derived-state-from-hook",
+    "guideline": "rerender-derived-state"
+  },
+  {
+    "rule": "react-doctor/rendering-hydration-mismatch-time",
+    "guideline": "rendering-hydration-suppress-warning"
+  },
+  {
+    "rule": "react-doctor/rendering-conditional-render",
+    "guideline": "rendering-conditional-render",
+    "accepted": [
+      "export function Badge({isVisible}:{isVisible:boolean}){return <div>{isVisible && <span>Visible</span>}</div>}"
+    ]
+  },
+  {
+    "rule": "react-doctor/js-flatmap-filter",
+    "guideline": "js-flatmap-filter"
+  },
+  {
+    "rule": "react-doctor/advanced-event-handler-refs",
+    "guideline": "advanced-event-handler-refs",
+    "imports": [
+      "useEffect",
+      "useRef"
+    ]
+  },
+  {
+    "rule": "react-doctor/prefer-use-effect-event",
+    "guideline": "advanced-use-latest",
+    "imports": [
+      "useState",
+      "useEffect"
+    ]
+  },
+  {
+    "rule": "react-doctor/async-parallel",
+    "guideline": "async-parallel",
+    "bad": "async function load(){const a=await fetchA();const b=await fetchB();const c=await fetchC();return [a,b,c]}",
+    "good": "async function load(){return Promise.all([fetchA(),fetchB(),fetchC()])}",
+    "accepted": [
+      "async function load(){const a=await fetchA();const b=await fetchB(a);const c=await fetchC(b);return [a,b,c]}"
+    ]
+  },
+  {
+    "rule": "react-doctor/server-after-nonblocking",
+    "guideline": "server-after-nonblocking",
+    "bad": "\"use server\";export async function save(){await analytics.track(\"saved\");}",
+    "good": "\"use server\";import {after} from \"next/server\";export async function save(){after(()=>analytics.track(\"saved\"));}"
+  },
+  {
+    "rule": "react-doctor/rerender-dependencies",
+    "guideline": "rerender-dependencies",
+    "bad": "import {useEffect} from \"react\";function C(){useEffect(()=>sync(),[{}]);return null;}",
+    "good": "import {useEffect} from \"react\";function C({id}){useEffect(()=>sync(id),[id]);return null;}"
+  },
+  {
+    "rule": "react-doctor/rerender-transitions-scroll",
+    "guideline": "rerender-transitions",
+    "bad": "import {useState} from \"react\";function C(){const [v,setV]=useState(0);window.addEventListener(\"scroll\",()=>setV(window.scrollY));return <p>{v}</p>}",
+    "good": "import {useState,startTransition} from \"react\";function C(){const [v,setV]=useState(0);window.addEventListener(\"scroll\",()=>startTransition(()=>setV(window.scrollY)));return <p>{v}</p>}"
+  },
+  {
+    "rule": "react-doctor/rendering-hoist-jsx",
+    "guideline": "rendering-hoist-jsx",
+    "bad": "function C(){const icon=<svg><path d=\"M0 0\"/></svg>;return <div>{icon}</div>}",
+    "good": "const icon=<svg><path d=\"M0 0\"/></svg>;function C(){return <div>{icon}</div>}"
+  },
+  {
+    "rule": "react-doctor/rendering-svg-precision",
+    "guideline": "rendering-svg-precision",
+    "bad": "function C(){return <svg><path d=\"M 10.293847 20.847362 L 30.938472 40.192837\"/></svg>}",
+    "good": "function C(){return <svg><path d=\"M 10.3 20.8 L 30.9 40.2\"/></svg>}"
+  },
+  {
+    "rule": "react-doctor/js-index-maps",
+    "guideline": "js-index-maps",
+    "bad": "function run(users,ids){for(const id of ids){const u=users.find(u=>u.id===id);show(u)}}",
+    "good": "function run(users,ids){const map=new Map(users.map(u=>[u.id,u]));for(const id of ids)show(map.get(id))}"
+  },
+  {
+    "rule": "react-doctor/js-cache-property-access",
+    "guideline": "js-cache-property-access",
+    "bad": "function run(obj,arr){for(const x of arr){consume(obj.config.value);consume(obj.config.value);consume(obj.config.value)}}",
+    "good": "function run(obj,arr){for(const x of arr){const v=obj.config.value;consume(v);consume(v);consume(v)}}"
+  },
+  {
+    "rule": "react-doctor/js-combine-iterations",
+    "guideline": "js-combine-iterations",
+    "bad": "function run(users){return users.filter(u=>u.active).map(u=>u.name)}",
+    "good": "function run(users){const result=[];for(const u of users){if(u.active)result.push(u.name)}return result}"
+  },
+  {
+    "rule": "react-doctor/js-length-check-first",
+    "guideline": "js-length-check-first",
+    "bad": "function equal(a,b){return a.every((x,i)=>x===b[i]);}",
+    "good": "function equal(a,b){return a.length===b.length&&a.every((x,i)=>x===b[i]);}"
+  },
+  {
+    "rule": "react-doctor/js-hoist-regexp",
+    "guideline": "js-hoist-regexp",
+    "bad": "function run(items){for(const item of items){if(new RegExp(\"foo\",\"i\").test(item))show(item)}}",
+    "good": "const re=new RegExp(\"foo\",\"i\");function run(items){for(const item of items){if(re.test(item))show(item)}}"
+  },
+  {
+    "rule": "react-doctor/js-min-max-loop",
+    "guideline": "js-min-max-loop",
+    "bad": "const min=[3,1,2].sort((a,b)=>a-b)[0];",
+    "good": "const min=Math.min(3,1,2);"
+  },
+  {
+    "rule": "react-doctor/prefer-dynamic-import",
+    "guideline": "bundle-dynamic-imports",
+    "bad": "import Editor from \"@monaco-editor/react\";export function C(){return <Editor/>}",
+    "good": "import {lazy} from \"react\";const Editor=lazy(()=>import(\"@monaco-editor/react\"));export function C(){return <Editor/>}"
+  },
+  {
+    "rule": "react-doctor/no-eager-new-in-use-state-initializer",
+    "guideline": "rerender-lazy-state-init",
+    "bad": "import {useState} from \"react\";function C(){const [m]=useState(new Map(entries));return <p>{m.size}</p>}",
+    "good": "import {useState} from \"react\";function C(){const [m]=useState(()=>new Map(entries));return <p>{m.size}</p>}"
+  },
+  {
+    "rule": "react-doctor/no-unguarded-browser-global-in-render-or-hook-init",
+    "guideline": "rendering-hydration-no-flicker",
+    "bad": "export default function C(){return <p>{localStorage.getItem(\"theme\")}</p>}",
+    "good": "export default function C(){return <p>theme</p>}"
+  },
+  {
+    "rule": "react-doctor/no-usememo-simple-expression",
+    "guideline": "rerender-simple-expression-in-memo",
+    "bad": "import {useMemo} from \"react\";export function C(){const n=useMemo(()=>1+2,[]);return <p>{n}</p>}",
+    "good": "import {useMemo} from \"react\";export function C({items}){const n=useMemo(()=>expensive(items),[items]);return <p>{n}</p>}"
+  },
+  {
+    "rule": "react-doctor/no-dynamic-import-path",
+    "guideline": "bundle-analyzable-paths",
+    "bad": "const paths={home:\"./home\"};export const page=import(paths[name]);",
+    "good": "const paths={home:()=>import(\"./home\")};export const page=paths[name]();"
+  },
+  {
+    "rule": "unicorn/prefer-set-has",
+    "guideline": "js-set-map-lookups",
+    "bad": "const ids=[\"a\",\"b\"];export const matches=items.filter(item=>ids.includes(item.id));",
+    "good": "const ids=new Set([\"a\",\"b\"]);export const matches=items.filter(item=>ids.has(item.id));"
+  },
+  {
+    "rule": "next-official/no-location-assign-relative-destination",
+    "guideline": null,
+    "bad": "window.location.assign(\"/dashboard\");",
+    "good": "window.location.assign(\"https://example.com\");"
+  },
+  {
+    "rule": "vercel-react-best-practices/prefer-functional-state-update",
+    "guideline": "rerender-functional-setstate",
+    "bad": "import {useState} from \"react\";export function C(){const [n,put]=useState(0);return <button onClick={()=>put(n+1)}>{n}</button>}",
+    "good": "import {useState} from \"react\";export function C(){const [n,put]=useState(0);return <button onClick={()=>put(prev=>prev+1)}>{n}</button>}"
+  },
+  {
+    "rule": "vercel-react-best-practices/no-render-regexp",
+    "guideline": "js-hoist-regexp",
+    "bad": "export function C({text,query}){const re=new RegExp(query,\"i\");return <p>{text.split(re)}</p>}",
+    "good": "import {useMemo} from \"react\";export function C({text,query}){const re=useMemo(()=>new RegExp(query,\"i\"),[query]);return <p>{text.split(re)}</p>}"
+  },
+  {
+    "rule": "vercel-react-best-practices/no-repeated-storage-read",
+    "guideline": "js-cache-storage",
+    "bad": "export function read(){const a=localStorage.getItem(\"theme\");const b=localStorage.getItem(\"theme\");return [a,b]}",
+    "good": "export function read(){const a=localStorage.getItem(\"theme\");return [a,a]}"
+  },
+  {
+    "rule": "react-doctor/nextjs-no-use-search-params-without-suspense",
+    "guideline": "async-suspense-boundaries",
+    "filename": "page.tsx",
+    "bad": "'use client'; import {useSearchParams} from 'next/navigation'; export default function Page(){const p=useSearchParams(); return <p>{p.get('q')}</p>}",
+    "good": "'use client'; import {Suspense} from 'react'; import {useSearchParams} from 'next/navigation'; function Search(){const p=useSearchParams();return <p>{p.get('q')}</p>} export default function Page(){return <Suspense fallback={null}><Search/></Suspense>}",
+    "accepted": [
+      "async function Page() {\n  const data = await fetchData() // Blocks entire page\n  \n  return (\n    <div>\n      <div>Sidebar</div>\n      <div>Header</div>\n      <div>\n        <DataDisplay data={data} />\n      </div>\n      <div>Footer</div>\n    </div>\n  )\n}\n"
+    ]
+  },
+  {
+    "rule": "react-doctor/js-set-map-lookups",
+    "guideline": "js-set-map-lookups",
+    "bad": "export function select(items, allowed) { return items.filter(item => allowed.includes(item.id)); }",
+    "good": "export function select(items, allowed) { const allowedSet = new Set(allowed); return items.filter(item => allowedSet.has(item.id)); }",
+    "accepted": [
+      "export function search(items, text) { return items.filter(item => text.includes(item.name)); }"
+    ]
+  },
+  {
+    "rule": "react-doctor/async-await-in-loop",
+    "guideline": "async-parallel",
+    "bad": "export async function load(ids) { const results = []; for (const id of ids) { results.push(await fetchItem(id)); } return results; }",
+    "good": "export async function load(ids) { return Promise.all(ids.map(id => fetchItem(id))); }",
+    "accepted": [
+      "export async function reduce(ids) { let previous = null; for (const id of ids) { previous = await fetchItem(id, previous); } return previous; }"
+    ]
+  },
+  {
+    "rule": "react-doctor/rerender-state-only-in-handlers",
+    "guideline": "rerender-use-ref-transient-values",
+    "bad": "import {useState} from \"react\"; export function Counter(){const [count,setCount]=useState(0); return <button onClick={() => {setCount(count+1);}}>Track</button>;}",
+    "good": "import {useRef} from \"react\"; export function Counter(){const count=useRef(0);return <button onClick={() => {count.current += 1;}}>Track</button>;}",
+    "accepted": [
+      "import {useState} from \"react\"; export function Counter(){const [count,setCount]=useState(0); return <button onClick={() => setCount(count+1)}>{count}</button>;}",
+      "import {useState,useEffect} from \"react\";\nfunction Tracker() {\n  const [lastX, setLastX] = useState(0)\n\n  useEffect(() => {\n    const onMove = (e: MouseEvent) => setLastX(e.clientX)\n    window.addEventListener('mousemove', onMove)\n    return () => window.removeEventListener('mousemove', onMove)\n  }, [])\n\n  return (\n    <div\n      style={{\n        position: 'fixed',\n        top: 0,\n        left: lastX,\n        width: 8,\n        height: 8,\n        background: 'black',\n      }}\n    />\n  )\n}\n"
+    ]
+  },
+  {
+    "rule": "react-doctor/auth-token-in-web-storage",
+    "guideline": "client-localstorage-schema",
+    "bad": "localStorage.setItem('accessToken',token)",
+    "good": "localStorage.setItem('prefs:v1',JSON.stringify({theme:'dark'}))",
+    "accepted": [
+      "localStorage.setItem('data',jwt)"
+    ]
+  },
+  {
+    "rule": "react-doctor/no-unsafe-json-parse",
+    "guideline": "client-localstorage-schema",
+    "bad": "function load(){return JSON.parse(localStorage.getItem('prefs:v1')).theme}",
+    "good": "function load(){try{return JSON.parse(localStorage.getItem('prefs:v1')).theme}catch{return 'light'}}"
+  },
+  {
+    "rule": "react-doctor/js-batch-dom-css",
+    "guideline": "js-batch-dom-css",
+    "bad": "function run(els){for(const el of els){const width=el.offsetWidth;el.style.width=width+'px';el.style.height='20px';}}",
+    "good": "function run(els){for(const el of els){el.style.width='10px';el.style.height='20px';}}"
+  },
+  {
+    "rule": "react-doctor/no-match-media-in-state-initializer",
+    "guideline": "rendering-hydration-no-flicker",
+    "bad": "import {useState} from \"react\"; function App(){const [mobile]=useState(()=>typeof window!=='undefined'&&window.matchMedia('(max-width: 767px)').matches);return <div>{mobile}</div>}",
+    "good": "import {useSyncExternalStore} from \"react\"; const subscribe=()=>()=>{}; function App(){const mobile=useSyncExternalStore(subscribe,()=>window.matchMedia(\"(max-width: 767px)\").matches,()=>false);return <div>{mobile}</div>}"
+  },
+  {
+    "rule": "react-doctor/no-nondeterministic-id-value-in-render-body",
+    "guideline": "rendering-hydration-suppress-warning",
+    "bad": "import {nanoid} from 'nanoid';function App(){const id=nanoid();return <input id={id}/>}",
+    "good": "import {useId} from \"react\"; function App(){const id=useId();return <input id={id}/>}"
+  },
+  {
+    "rule": "react-doctor/no-unguarded-browser-global-at-module-scope",
+    "guideline": "rendering-hydration-no-flicker",
+    "bad": "const theme=localStorage.getItem('theme');function App(){return <div>{theme}</div>}",
+    "good": "const theme=typeof localStorage!=='undefined'?localStorage.getItem('theme'):'light';function App(){return <div>{theme}</div>}"
+  },
+  {
+    "rule": "react-doctor/no-hydration-branch-on-browser-global",
+    "guideline": "rendering-hydration-no-flicker",
+    "bad": "'use client'; function Panel(){return typeof window==='undefined'?<p>server</p>:<p>client</p>}",
+    "good": "'use client'; function Panel(){return <p>same initial output</p>}"
+  },
+  {
+    "rule": "react-doctor/no-locale-format-in-render",
+    "guideline": "rendering-hydration-suppress-warning",
+    "bad": "'use client';const date=new Date('2020-01-01');function Panel(){return <p>{new Intl.DateTimeFormat().format(date)}</p>}",
+    "good": "'use client';const date=new Date('2020-01-01');function Panel(){return <p suppressHydrationWarning>{new Intl.DateTimeFormat().format(date)}</p>}"
+  },
+  {
+    "rule": "react-doctor/rendering-hydration-no-flicker",
+    "guideline": "rendering-hydration-no-flicker",
+    "bad": "import {useState,useEffect} from \"react\";function Panel(){const [theme,setTheme]=useState(\"light\");useEffect(()=>{setTheme(localStorage.getItem(\"theme\"))},[]);return <p>{theme}</p>}",
+    "good": "export function Panel({initialTheme}){return <p>{initialTheme}</p>}"
+  }
+]

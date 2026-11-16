@@ -7,6 +7,10 @@ tags: javascript, arrays, immutability, react, state, mutation
 
 ## Use toSorted() Instead of sort() for Immutability
 
+(Skill: `vercel-react-best-practices`; lint: Delegated; `unicorn/no-array-sort`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 `.sort()` mutates the array in place, which can cause bugs with React state and props. Use `.toSorted()` to create a new sorted array without mutation.
 
 **Incorrect (mutates original array):**

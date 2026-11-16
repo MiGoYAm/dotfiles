@@ -7,6 +7,10 @@ tags: server, rsc, serialization, props, client-components
 
 ## Avoid Duplicate Serialization in RSC Props
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-dedup-props`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW (reduces network payload by avoiding duplicate serialization)**
 
 RSC→client serialization deduplicates by object reference, not value. Same reference = serialized once; new reference = serialized again. Do transformations (`.toSorted()`, `.filter()`, `.map()`) in client, not server.

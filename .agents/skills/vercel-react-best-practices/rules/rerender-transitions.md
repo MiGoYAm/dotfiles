@@ -7,6 +7,10 @@ tags: rerender, transitions, startTransition, performance
 
 ## Use Transitions for Non-Urgent Updates
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-transitions-scroll`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Mark frequent, non-urgent state updates as transitions to maintain UI responsiveness.
 
 **Incorrect (blocks UI on every scroll):**

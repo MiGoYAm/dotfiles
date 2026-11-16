@@ -7,6 +7,10 @@ tags: server, cache, lru, cross-request
 
 ## Cross-Request LRU Caching
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 `React.cache()` only works within one request. For data shared across sequential requests (user clicks button A then button B), use an LRU cache.
 
 **Implementation:**

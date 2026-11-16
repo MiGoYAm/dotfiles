@@ -7,6 +7,10 @@ tags: javascript, functions, optimization, early-return
 
 ## Early Return from Functions
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Return early when result is determined to skip unnecessary processing.
 
 **Incorrect (processes all items even after finding answer):**

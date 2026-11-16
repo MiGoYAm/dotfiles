@@ -7,6 +7,10 @@ tags: javascript, regexp, optimization, memoization
 
 ## Hoist RegExp Creation
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-hoist-regexp`, `vercel-react-best-practices/no-render-regexp`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Don't create RegExp inside render. Hoist to module scope or memoize with `useMemo()`.
 
 **Incorrect (new RegExp every render):**

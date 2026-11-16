@@ -12,9 +12,15 @@ January 2026
 
 ---
 
+Six mechanical checks are delegated to Oxlint in
+[lint-replaced/README.md](lint-replaced/README.md). The
+[complete audit](oxlint/COVERAGE.md) accounts for all 70 guidelines, including
+partial detectors and decisions that still need manual review. Original section
+numbers are retained below.
+
 ## Abstract
 
-Comprehensive performance optimization guide for React and Next.js applications, designed for AI agents and LLMs. Contains 40+ rules across 8 categories, prioritized by impact from critical (eliminating waterfalls, reducing bundle size) to incremental (advanced patterns). Each rule includes detailed explanations, real-world examples comparing incorrect vs. correct implementations, and specific impact metrics to guide automated refactoring and code generation.
+Comprehensive performance optimization guide for React and Next.js applications, designed for AI agents and LLMs. Contains 64 agent-reviewed rules across 8 categories, prioritized by impact from critical (eliminating waterfalls, reducing bundle size) to incremental (advanced patterns). Each rule includes detailed explanations, real-world examples comparing incorrect vs. correct implementations, and specific impact metrics to guide automated refactoring and code generation.
 
 ---
 
@@ -51,11 +57,8 @@ Comprehensive performance optimization guide for React and Next.js applications,
    - 4.3 [Use SWR for Automatic Deduplication](#43-use-swr-for-automatic-deduplication)
    - 4.4 [Version and Minimize localStorage Data](#44-version-and-minimize-localstorage-data)
 5. [Re-render Optimization](#5-re-render-optimization) — **MEDIUM**
-   - 5.1 [Calculate Derived State During Rendering](#51-calculate-derived-state-during-rendering)
    - 5.2 [Defer State Reads to Usage Point](#52-defer-state-reads-to-usage-point)
    - 5.3 [Do not wrap a simple expression with a primitive result type in useMemo](#53-do-not-wrap-a-simple-expression-with-a-primitive-result-type-in-usememo)
-   - 5.4 [Don't Define Components Inside Components](#54-dont-define-components-inside-components)
-   - 5.5 [Extract Default Non-primitive Parameter Value from Memoized Component to Constant](#55-extract-default-non-primitive-parameter-value-from-memoized-component-to-constant)
    - 5.6 [Extract to Memoized Components](#56-extract-to-memoized-components)
    - 5.7 [Narrow Effect Dependencies](#57-narrow-effect-dependencies)
    - 5.8 [Put Interaction Logic in Event Handlers](#58-put-interaction-logic-in-event-handlers)
@@ -74,7 +77,6 @@ Comprehensive performance optimization guide for React and Next.js applications,
    - 6.5 [Prevent Hydration Mismatch Without Flickering](#65-prevent-hydration-mismatch-without-flickering)
    - 6.6 [Suppress Expected Hydration Mismatches](#66-suppress-expected-hydration-mismatches)
    - 6.7 [Use Activity Component for Show/Hide](#67-use-activity-component-for-showhide)
-   - 6.8 [Use defer or async on Script Tags](#68-use-defer-or-async-on-script-tags)
    - 6.9 [Use Explicit Conditional Rendering](#69-use-explicit-conditional-rendering)
    - 6.10 [Use React DOM Resource Hints](#610-use-react-dom-resource-hints)
    - 6.11 [Use useTransition Over Manual Loading States](#611-use-usetransition-over-manual-loading-states)
@@ -92,9 +94,7 @@ Comprehensive performance optimization guide for React and Next.js applications,
    - 7.11 [Use flatMap to Map and Filter in One Pass](#711-use-flatmap-to-map-and-filter-in-one-pass)
    - 7.12 [Use Loop for Min/Max Instead of Sort](#712-use-loop-for-minmax-instead-of-sort)
    - 7.13 [Use Set/Map for O(1) Lookups](#713-use-setmap-for-o1-lookups)
-   - 7.14 [Use toSorted() Instead of sort() for Immutability](#714-use-tosorted-instead-of-sort-for-immutability)
 8. [Advanced Patterns](#8-advanced-patterns) — **LOW**
-   - 8.1 [Do Not Put Effect Events in Dependency Arrays](#81-do-not-put-effect-events-in-dependency-arrays)
    - 8.2 [Initialize App Once, Not Per Mount](#82-initialize-app-once-not-per-mount)
    - 8.3 [Store Event Handlers in Refs](#83-store-event-handlers-in-refs)
    - 8.4 [useEffectEvent for Stable Callback Refs](#84-useeffectevent-for-stable-callback-refs)
@@ -108,6 +108,10 @@ Comprehensive performance optimization guide for React and Next.js applications,
 Waterfalls are the #1 performance killer. Each sequential await adds full network latency. Eliminating them yields the largest gains.
 
 ### 1.1 Check Cheap Conditions Before Async Flags
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: HIGH (avoids unnecessary async work when a synchronous guard already fails)**
 
@@ -141,6 +145,10 @@ This matters when `getFlag` hits the network, a feature-flag service, or `React.
 Keep the original order if `someCondition` is expensive, depends on the flag, or you must run side effects in a fixed order.
 
 ### 1.2 Defer Await Until Needed
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/async-defer-await`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: HIGH (avoids blocking unused code paths)**
 
@@ -220,6 +228,10 @@ For `await getFlag()` combined with a cheap synchronous guard (`flag && someCond
 
 ### 1.3 Dependency-Based Parallelization
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: CRITICAL (2-10× improvement)**
 
 For operations with partial dependencies, use `better-all` to maximize parallelism. It automatically starts each task at the earliest possible moment.
@@ -267,6 +279,10 @@ Reference: [https://github.com/shuding/better-all](https://github.com/shuding/be
 
 ### 1.4 Prevent Waterfall Chains in API Routes
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-sequential-independent-await`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: CRITICAL (2-10× improvement)**
 
 In API routes and Server Actions, start independent operations immediately, even if you don't await them yet.
@@ -301,6 +317,10 @@ For operations with more complex dependency chains, use `better-all` to automati
 
 ### 1.5 Promise.all() for Independent Operations
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/async-parallel`, `react-doctor/async-await-in-loop`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: CRITICAL (2-10× improvement)**
 
 When async operations have no interdependencies, execute them concurrently using `Promise.all()`.
@@ -324,6 +344,10 @@ const [user, posts, comments] = await Promise.all([
 ```
 
 ### 1.6 Strategic Suspense Boundaries
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/nextjs-no-use-search-params-without-suspense`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: HIGH (faster initial paint)**
 
@@ -431,6 +455,10 @@ Reducing initial bundle size improves Time to Interactive and Largest Contentful
 
 ### 2.1 Avoid Barrel File Imports
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: CRITICAL (200-800ms import cost, slow builds)**
 
 Import directly from source files instead of barrel files to avoid loading thousands of unused modules. **Barrel files** are entry points that re-export multiple modules (e.g., `index.js` that does `export * from './module'`).
@@ -478,6 +506,10 @@ Reference: [https://vercel.com/blog/how-we-optimized-package-imports-in-next-js]
 
 ### 2.2 Conditional Module Loading
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (loads large data only when needed)**
 
 Load large data or modules only when a feature is activated.
@@ -504,6 +536,10 @@ function AnimationPlayer({ enabled, setEnabled }: { enabled: boolean; setEnabled
 The `typeof window !== 'undefined'` check prevents bundling this module for SSR, optimizing server bundle size and build speed.
 
 ### 2.3 Defer Non-Critical Third-Party Libraries
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (loads after hydration)**
 
@@ -550,6 +586,10 @@ export default function RootLayout({ children }) {
 
 ### 2.4 Dynamic Imports for Heavy Components
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/prefer-dynamic-import`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: CRITICAL (directly affects TTI and LCP)**
 
 Use `next/dynamic` to lazy-load large components not needed on initial render.
@@ -580,6 +620,10 @@ function CodePanel({ code }: { code: string }) {
 ```
 
 ### 2.5 Prefer Statically Analyzable Paths
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-dynamic-import-path`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: HIGH (avoids accidental broad bundles and file traces)**
 
@@ -640,6 +684,10 @@ Reference: [https://nextjs.org/docs/app/api-reference/config/next-config-js/outp
 
 ### 2.6 Preload Based on User Intent
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM (reduces perceived latency)**
 
 Preload heavy bundles before they're needed to reduce perceived latency.
@@ -693,6 +741,10 @@ The `typeof window !== 'undefined'` check prevents bundling preloaded modules fo
 Optimizing server-side rendering and data fetching eliminates server-side waterfalls and reduces response times.
 
 ### 3.1 Authenticate Server Actions Like API Routes
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-auth-actions`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: CRITICAL (prevents unauthorized access to server mutations)**
 
@@ -784,6 +836,10 @@ Reference: [https://nextjs.org/docs/app/guides/authentication](https://nextjs.or
 
 ### 3.2 Avoid Duplicate Serialization in RSC Props
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-dedup-props`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW (reduces network payload by avoiding duplicate serialization)**
 
 RSC→client serialization deduplicates by object reference, not value. Same reference = serialized once; new reference = serialized again. Do transformations (`.toSorted()`, `.filter()`, `.map()`) in client, not server.
@@ -845,6 +901,10 @@ Deduplication works recursively. Impact varies by data type:
 
 ### 3.3 Avoid Shared Module State for Request Data
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react/globals`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (prevents concurrency bugs and request data leaks)**
 
 For React Server Components and client components rendered during SSR, avoid using mutable module-level variables to share request-scoped data. Server renders can run concurrently in the same process. If one render writes to shared module state and another render reads it, you can get race conditions, cross-request contamination, and security bugs where one user's data appears in another user's response.
@@ -893,6 +953,10 @@ For static assets and config, see [Hoist Static I/O to Module Level](./server-ho
 
 ### 3.4 Cross-Request LRU Caching
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (caches across requests)**
 
 `React.cache()` only works within one request. For data shared across sequential requests (user clicks button A then button B), use an LRU cache.
@@ -929,6 +993,10 @@ Use when sequential user actions hit multiple endpoints needing the same data wi
 Reference: [https://github.com/isaacs/node-lru-cache](https://github.com/isaacs/node-lru-cache)
 
 ### 3.5 Hoist Static I/O to Module Level
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-hoist-static-io`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: HIGH (avoids repeated file/network I/O per request)**
 
@@ -1080,6 +1148,10 @@ In traditional serverless, each cold start re-executes module-level code, but su
 
 ### 3.6 Minimize Serialization at RSC Boundaries
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (reduces data transfer size)**
 
 The React Server/Client boundary serializes all object properties into strings and embeds them in the HTML response and subsequent RSC requests. This serialized data directly impacts page weight and load time, so **size matters a lot**. Only pass fields that the client actually uses.
@@ -1113,6 +1185,10 @@ function Profile({ name }: { name: string }) {
 ```
 
 ### 3.7 Parallel Data Fetching with Component Composition
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: CRITICAL (eliminates server-side waterfalls)**
 
@@ -1193,6 +1269,10 @@ export default function Page() {
 
 ### 3.8 Parallel Nested Data Fetching
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: CRITICAL (eliminates server-side waterfalls)**
 
 When fetching nested data in parallel, chain dependent fetches within each item's promise so a slow item doesn't block the rest.
@@ -1222,6 +1302,10 @@ const chatAuthors = await Promise.all(
 Each item independently chains `getChat` → `getUser`, so a slow chat doesn't block author fetches for the others.
 
 ### 3.9 Per-Request Deduplication with React.cache()
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-cache-with-object-literal`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (deduplicates within request)**
 
@@ -1288,6 +1372,10 @@ Use `React.cache()` to deduplicate these operations across your component tree.
 Reference: [https://react.dev/reference/react/cache](https://react.dev/reference/react/cache)
 
 ### 3.10 Use after() for Non-Blocking Operations
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-after-nonblocking`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (faster response times)**
 
@@ -1371,6 +1459,10 @@ Automatic deduplication and efficient data fetching patterns reduce redundant ne
 
 ### 4.1 Deduplicate Global Event Listeners
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW (single listener for N components)**
 
 Use `useSWRSubscription()` to share global event listeners across component instances.
@@ -1441,6 +1533,10 @@ function Profile() {
 
 ### 4.2 Use Passive Event Listeners for Scrolling Performance
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/client-passive-event-listeners`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM (eliminates scroll delay caused by event listeners)**
 
 Add `{ passive: true }` to touch and wheel event listeners to enable immediate scrolling. Browsers normally wait for listeners to finish to check if `preventDefault()` is called, causing scroll delay.
@@ -1484,6 +1580,10 @@ useEffect(() => {
 **Don't use passive when:** implementing custom swipe gestures, custom zoom controls, or any listener that needs `preventDefault()`.
 
 ### 4.3 Use SWR for Automatic Deduplication
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-fetch-in-effect`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM-HIGH (automatic deduplication)**
 
@@ -1536,6 +1636,10 @@ function UpdateButton() {
 Reference: [https://swr.vercel.app](https://swr.vercel.app)
 
 ### 4.4 Version and Minimize localStorage Data
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/auth-token-in-web-storage`, `react-doctor/no-unsafe-json-parse`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (prevents schema conflicts, reduces storage size)**
 
@@ -1610,43 +1714,11 @@ function cachePrefs(user: FullUser) {
 
 Reducing unnecessary re-renders minimizes wasted computation and improves UI responsiveness.
 
-### 5.1 Calculate Derived State During Rendering
-
-**Impact: MEDIUM (avoids redundant renders and state drift)**
-
-If a value can be computed from current props/state, do not store it in state or update it in an effect. Derive it during render to avoid extra renders and state drift. Do not set state in effects solely in response to prop changes; prefer derived values or keyed resets instead.
-
-**Incorrect: redundant state and effect**
-
-```tsx
-function Form() {
-  const [firstName, setFirstName] = useState('First')
-  const [lastName, setLastName] = useState('Last')
-  const [fullName, setFullName] = useState('')
-
-  useEffect(() => {
-    setFullName(firstName + ' ' + lastName)
-  }, [firstName, lastName])
-
-  return <p>{fullName}</p>
-}
-```
-
-**Correct: derive during render**
-
-```tsx
-function Form() {
-  const [firstName, setFirstName] = useState('First')
-  const [lastName, setLastName] = useState('Last')
-  const fullName = firstName + ' ' + lastName
-
-  return <p>{fullName}</p>
-}
-```
-
-Reference: [https://react.dev/learn/you-might-not-need-an-effect](https://react.dev/learn/you-might-not-need-an-effect)
-
 ### 5.2 Defer State Reads to Usage Point
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-defer-reads-hook`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (avoids unnecessary subscriptions)**
 
@@ -1683,6 +1755,10 @@ function ShareButton({ chatId }: { chatId: string }) {
 
 ### 5.3 Do not wrap a simple expression with a primitive result type in useMemo
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-usememo-simple-expression`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (wasted computation on every render)**
 
 When an expression is simple (few logical or arithmetical operators) and has a primitive result type (boolean, number, string), do not wrap it in `useMemo`.
@@ -1713,119 +1789,11 @@ function Header({ user, notifications }: Props) {
 }
 ```
 
-### 5.4 Don't Define Components Inside Components
-
-**Impact: HIGH (prevents remount on every render)**
-
-Defining a component inside another component creates a new component type on every render. React sees a different component each time and fully remounts it, destroying all state and DOM.
-
-A common reason developers do this is to access parent variables without passing props. Always pass props instead.
-
-**Incorrect: remounts on every render**
-
-```tsx
-function UserProfile({ user, theme }) {
-  // Defined inside to access `theme` - BAD
-  const Avatar = () => (
-    <img
-      src={user.avatarUrl}
-      className={theme === 'dark' ? 'avatar-dark' : 'avatar-light'}
-    />
-  )
-
-  // Defined inside to access `user` - BAD
-  const Stats = () => (
-    <div>
-      <span>{user.followers} followers</span>
-      <span>{user.posts} posts</span>
-    </div>
-  )
-
-  return (
-    <div>
-      <Avatar />
-      <Stats />
-    </div>
-  )
-}
-```
-
-Every time `UserProfile` renders, `Avatar` and `Stats` are new component types. React unmounts the old instances and mounts new ones, losing any internal state, running effects again, and recreating DOM nodes.
-
-**Correct: pass props instead**
-
-```tsx
-function Avatar({ src, theme }: { src: string; theme: string }) {
-  return (
-    <img
-      src={src}
-      className={theme === 'dark' ? 'avatar-dark' : 'avatar-light'}
-    />
-  )
-}
-
-function Stats({ followers, posts }: { followers: number; posts: number }) {
-  return (
-    <div>
-      <span>{followers} followers</span>
-      <span>{posts} posts</span>
-    </div>
-  )
-}
-
-function UserProfile({ user, theme }) {
-  return (
-    <div>
-      <Avatar src={user.avatarUrl} theme={theme} />
-      <Stats followers={user.followers} posts={user.posts} />
-    </div>
-  )
-}
-```
-
-**Symptoms of this bug:**
-
-- Input fields lose focus on every keystroke
-
-- Animations restart unexpectedly
-
-- `useEffect` cleanup/setup runs on every parent render
-
-- Scroll position resets inside the component
-
-### 5.5 Extract Default Non-primitive Parameter Value from Memoized Component to Constant
-
-**Impact: MEDIUM (restores memoization by using a constant for default value)**
-
-When memoized component has a default value for some non-primitive optional parameter, such as an array, function, or object, calling the component without that parameter results in broken memoization. This is because new value instances are created on every rerender, and they do not pass strict equality comparison in `memo()`.
-
-To address this issue, extract the default value into a constant.
-
-**Incorrect: `onClick` has different values on every rerender**
-
-```tsx
-const UserAvatar = memo(function UserAvatar({ onClick = () => {} }: { onClick?: () => void }) {
-  // ...
-})
-
-// Used without optional onClick
-<UserAvatar />
-```
-
-**Correct: stable default value**
-
-```tsx
-const NOOP = () => {};
-
-const UserAvatar = memo(function UserAvatar({ onClick = NOOP }: { onClick?: () => void }) {
-  // ...
-})
-
-// Used without optional onClick
-<UserAvatar />
-```
-
 ### 5.6 Extract to Memoized Components
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-memo-before-early-return`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (enables early returns)**
 
@@ -1866,6 +1834,10 @@ function Profile({ user, loading }: Props) {
 **Note:** If your project has [React Compiler](https://react.dev/learn/react-compiler) enabled, manual memoization with `memo()` and `useMemo()` is not necessary. The compiler automatically optimizes re-renders.
 
 ### 5.7 Narrow Effect Dependencies
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-dependencies`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: LOW (minimizes effect re-runs)**
 
@@ -1908,6 +1880,10 @@ useEffect(() => {
 
 ### 5.8 Put Interaction Logic in Event Handlers
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-event-handler`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM (avoids effect re-runs and duplicate side effects)**
 
 If a side effect is triggered by a specific user action (submit, click, drag), run it in that event handler. Do not model the action as state + effect; it makes effects re-run on unrelated changes and can duplicate the action.
@@ -1948,6 +1924,10 @@ function Form() {
 Reference: [https://react.dev/learn/removing-effect-dependencies#should-this-code-move-to-an-event-handler](https://react.dev/learn/removing-effect-dependencies#should-this-code-move-to-an-event-handler)
 
 ### 5.9 Split Combined Hook Computations
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (avoids recomputing independent steps)**
 
@@ -2009,6 +1989,10 @@ useEffect(() => {
 
 ### 5.10 Subscribe to Derived State
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-derived-state-from-hook`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM (reduces re-render frequency)**
 
 Subscribe to derived boolean state instead of continuous values to reduce re-render frequency.
@@ -2033,6 +2017,10 @@ function Sidebar() {
 ```
 
 ### 5.11 Use Functional setState Updates
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `vercel-react-best-practices/prefer-functional-state-update`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (prevents stale closures and unnecessary callback recreations)**
 
@@ -2112,6 +2100,10 @@ function TodoList() {
 
 ### 5.12 Use Lazy State Initialization
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-lazy-state-init`, `react-doctor/no-eager-new-in-use-state-initializer`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM (wasted computation on every render)**
 
 Pass a function to `useState` for expensive initial values. Without the function form, the initializer runs on every render even though the value is only used once.
@@ -2166,6 +2158,10 @@ For simple primitives (`useState(0)`), direct references (`useState(props.value)
 
 ### 5.13 Use Transitions for Non-Urgent Updates
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-transitions-scroll`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM (maintains UI responsiveness)**
 
 Mark frequent, non-urgent state updates as transitions to maintain UI responsiveness.
@@ -2201,6 +2197,10 @@ function ScrollTracker() {
 ```
 
 ### 5.14 Use useDeferredValue for Expensive Derived Renders
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (keeps input responsive during heavy computation)**
 
@@ -2258,6 +2258,10 @@ function Search({ items }: { items: Item[] }) {
 Reference: [https://react.dev/reference/react/useDeferredValue](https://react.dev/reference/react/useDeferredValue)
 
 ### 5.15 Use useRef for Transient Values
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-state-only-in-handlers`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (avoids unnecessary re-renders on frequent updates)**
 
@@ -2336,6 +2340,10 @@ Optimizing the rendering process reduces the work the browser needs to do.
 
 ### 6.1 Animate SVG Wrapper Instead of SVG Element
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW (enables hardware acceleration)**
 
 Many browsers don't have hardware acceleration for CSS3 animations on SVG elements. Wrap SVG in a `<div>` and animate the wrapper instead.
@@ -2379,6 +2387,10 @@ This applies to all CSS transforms and transitions (`transform`, `opacity`, `tra
 
 ### 6.2 CSS content-visibility for Long Lists
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (faster initial render)**
 
 Apply `content-visibility: auto` to defer off-screen rendering.
@@ -2412,6 +2424,10 @@ function MessageList({ messages }: { messages: Message[] }) {
 For 1000 messages, browser skips layout/paint for ~990 off-screen items (10× faster initial render).
 
 ### 6.3 Hoist Static JSX Elements
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rendering-hoist-jsx`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: LOW (avoids re-creation)**
 
@@ -2455,6 +2471,10 @@ This is especially helpful for large and static SVG nodes, which can be expensiv
 
 ### 6.4 Optimize SVG Precision
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rendering-svg-precision`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW (reduces file size)**
 
 Reduce SVG coordinate precision to decrease file size. The optimal precision depends on the viewBox size, but in general reducing precision should be considered.
@@ -2478,6 +2498,10 @@ npx svgo --precision=1 --multipass icon.svg
 ```
 
 ### 6.5 Prevent Hydration Mismatch Without Flickering
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-unguarded-browser-global-in-render-or-hook-init`, `react-doctor/no-unguarded-browser-global-at-module-scope`, `react-doctor/no-hydration-branch-on-browser-global`, `react-doctor/no-match-media-in-state-initializer`, `react-doctor/rendering-hydration-no-flicker`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (avoids visual flicker and hydration errors)**
 
@@ -2557,6 +2581,10 @@ This pattern is especially useful for theme toggles, user preferences, authentic
 
 ### 6.6 Suppress Expected Hydration Mismatches
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rendering-hydration-mismatch-time`, `react-doctor/no-nondeterministic-id-value-in-render-body`, `react-doctor/no-locale-format-in-render`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (avoids noisy hydration warnings for known differences)**
 
 In SSR frameworks (e.g., Next.js), some values are intentionally different on server vs client (random IDs, dates, locale/timezone formatting). For these *expected* mismatches, wrap the dynamic text in an element with `suppressHydrationWarning` to prevent noisy warnings. Do not use this to hide real bugs. Don’t overuse it.
@@ -2583,6 +2611,10 @@ function Timestamp() {
 
 ### 6.7 Use Activity Component for Show/Hide
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM (preserves state/DOM)**
 
 Use React's `<Activity>` to preserve state/DOM for expensive components that frequently toggle visibility.
@@ -2603,54 +2635,11 @@ function Dropdown({ isOpen }: Props) {
 
 Avoids expensive re-renders and state loss.
 
-### 6.8 Use defer or async on Script Tags
-
-**Impact: HIGH (eliminates render-blocking)**
-
-Script tags without `defer` or `async` block HTML parsing while the script downloads and executes. This delays First Contentful Paint and Time to Interactive.
-
-- **`defer`**: Downloads in parallel, executes after HTML parsing completes, maintains execution order
-
-- **`async`**: Downloads in parallel, executes immediately when ready, no guaranteed order
-
-Use `defer` for scripts that depend on DOM or other scripts. Use `async` for independent scripts like analytics.
-
-**Incorrect: blocks rendering**
-
-```tsx
-export default function Document() {
-  return (
-    <html>
-      <head>
-        <script src="https://example.com/analytics.js" />
-        <script src="/scripts/utils.js" />
-      </head>
-      <body>{/* content */}</body>
-    </html>
-  )
-}
-```
-
-**Correct: non-blocking**
-
-```tsx
-import Script from 'next/script'
-
-export default function Page() {
-  return (
-    <>
-      <Script src="https://example.com/analytics.js" strategy="afterInteractive" />
-      <Script src="/scripts/utils.js" strategy="beforeInteractive" />
-    </>
-  )
-}
-```
-
-**Note:** In Next.js, prefer the `next/script` component with `strategy` prop instead of raw script tags:
-
-Reference: [https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer)
-
 ### 6.9 Use Explicit Conditional Rendering
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rendering-conditional-render`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: LOW (prevents rendering 0 or NaN)**
 
@@ -2687,6 +2676,10 @@ function Badge({ count }: { count: number }) {
 ```
 
 ### 6.10 Use React DOM Resource Hints
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: HIGH (reduces load time for critical resources)**
 
@@ -2779,6 +2772,10 @@ Reference: [https://react.dev/reference/react-dom#resource-preloading-apis](http
 
 ### 6.11 Use useTransition Over Manual Loading States
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW (reduces re-renders and improves code clarity)**
 
 Use `useTransition` instead of manual `useState` for loading states. This provides built-in `isPending` state and automatically manages transitions.
@@ -2860,6 +2857,10 @@ Reference: [https://react.dev/reference/react/useTransition](https://react.dev/r
 Micro-optimizations for hot paths can add up to meaningful improvements.
 
 ### 7.1 Avoid Layout Thrashing
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-batch-dom-css`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (prevents forced synchronous layouts and reduces performance bottlenecks)**
 
@@ -2949,6 +2950,10 @@ See [this gist](https://gist.github.com/paulirish/5d52fb081b3570c81e3a) and [CSS
 
 ### 7.2 Build Index Maps for Repeated Lookups
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-index-maps`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (1M ops to 2K ops)**
 
 Multiple `.find()` calls by the same key should use a Map.
@@ -2983,6 +2988,10 @@ For 1000 orders × 1000 users: 1M ops → 2K ops.
 
 ### 7.3 Cache Property Access in Loops
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-cache-property-access`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (reduces lookups)**
 
 Cache object property lookups in hot paths.
@@ -3006,6 +3015,10 @@ for (let i = 0; i < len; i++) {
 ```
 
 ### 7.4 Cache Repeated Function Calls
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (avoid redundant computation)**
 
@@ -3083,6 +3096,10 @@ Reference: [https://vercel.com/blog/how-we-made-the-vercel-dashboard-twice-as-fa
 
 ### 7.5 Cache Storage API Calls
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `vercel-react-best-practices/no-repeated-storage-read`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (reduces expensive I/O)**
 
 `localStorage`, `sessionStorage`, and `document.cookie` are synchronous and expensive. Cache reads in memory.
@@ -3149,6 +3166,10 @@ If storage can change externally (another tab, server-set cookies), invalidate c
 
 ### 7.6 Combine Multiple Array Iterations
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-combine-iterations`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (reduces iterations)**
 
 Multiple `.filter()` or `.map()` calls iterate the array multiple times. Combine into one loop.
@@ -3176,6 +3197,10 @@ for (const user of users) {
 ```
 
 ### 7.7 Defer Non-Critical Work with requestIdleCallback
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: MEDIUM (keeps UI responsive during background tasks)**
 
@@ -3282,6 +3307,10 @@ scheduleIdleWork(() => {
 
 ### 7.8 Early Length Check for Array Comparisons
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-length-check-first`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM-HIGH (avoids expensive operations when lengths differ)**
 
 When comparing arrays with expensive operations (sorting, deep equality, serialization), check lengths first. If lengths differ, the arrays cannot be equal.
@@ -3331,6 +3360,10 @@ This new approach is more efficient because:
 
 ### 7.9 Early Return from Functions
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (avoids unnecessary computation)**
 
 Return early when result is determined to skip unnecessary processing.
@@ -3377,6 +3410,10 @@ function validateUsers(users: User[]) {
 
 ### 7.10 Hoist RegExp Creation
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-hoist-regexp`, `vercel-react-best-practices/no-render-regexp`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (avoids recreation)**
 
 Don't create RegExp inside render. Hoist to module scope or memoize with `useMemo()`.
@@ -3418,6 +3455,10 @@ Global regex (`/g`) has mutable `lastIndex` state:
 
 ### 7.11 Use flatMap to Map and Filter in One Pass
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-flatmap-filter`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (eliminates intermediate array)**
 
 Chaining `.map().filter(Boolean)` creates an intermediate array and iterates twice. Use `.flatMap()` to transform and filter in a single pass.
@@ -3433,9 +3474,10 @@ const userNames = users
 **Correct: 1 iteration, no intermediate array**
 
 ```typescript
-const userNames = users.flatMap(user =>
-  user.isActive ? [user.name] : []
-)
+const userNames = users.flatMap(user => {
+  const name = user.isActive ? user.name : null
+  return name ? [name] : []
+})
 ```
 
 **More examples:**
@@ -3448,9 +3490,10 @@ const emails = responses
   .filter(Boolean)
 
 // After
-const emails = responses.flatMap(r =>
-  r.success ? [r.data.email] : []
-)
+const emails = responses.flatMap(r => {
+  const email = r.success ? r.data.email : null
+  return email ? [email] : []
+})
 
 // Parse and filter valid numbers
 // Before
@@ -3474,6 +3517,10 @@ const numbers = strings.flatMap(s => {
 - Parsing/validating where invalid inputs should be skipped
 
 ### 7.12 Use Loop for Min/Max Instead of Sort
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-min-max-loop`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: LOW (O(n) instead of O(n log n))**
 
@@ -3553,6 +3600,10 @@ This works for small arrays, but can be slower or just throw an error for very l
 
 ### 7.13 Use Set/Map for O(1) Lookups
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `unicorn/prefer-set-has`, `react-doctor/js-set-map-lookups`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (O(n) to O(1))**
 
 Convert arrays to Set/Map for repeated membership checks.
@@ -3571,124 +3622,17 @@ const allowedIds = new Set(['a', 'b', 'c', ...])
 items.filter(item => allowedIds.has(item.id))
 ```
 
-### 7.14 Use toSorted() Instead of sort() for Immutability
-
-**Impact: MEDIUM-HIGH (prevents mutation bugs in React state)**
-
-`.sort()` mutates the array in place, which can cause bugs with React state and props. Use `.toSorted()` to create a new sorted array without mutation.
-
-**Incorrect: mutates original array**
-
-```typescript
-function UserList({ users }: { users: User[] }) {
-  // Mutates the users prop array!
-  const sorted = useMemo(
-    () => users.sort((a, b) => a.name.localeCompare(b.name)),
-    [users]
-  )
-  return <div>{sorted.map(renderUser)}</div>
-}
-```
-
-**Correct: creates new array**
-
-```typescript
-function UserList({ users }: { users: User[] }) {
-  // Creates new sorted array, original unchanged
-  const sorted = useMemo(
-    () => users.toSorted((a, b) => a.name.localeCompare(b.name)),
-    [users]
-  )
-  return <div>{sorted.map(renderUser)}</div>
-}
-```
-
-**Why this matters in React:**
-
-1. Props/state mutations break React's immutability model - React expects props and state to be treated as read-only
-
-2. Causes stale closure bugs - Mutating arrays inside closures (callbacks, effects) can lead to unexpected behavior
-
-**Browser support: fallback for older browsers**
-
-```typescript
-// Fallback for older browsers
-const sorted = [...items].sort((a, b) => a.value - b.value)
-```
-
-`.toSorted()` is available in all modern browsers (Chrome 110+, Safari 16+, Firefox 115+, Node.js 20+). For older environments, use spread operator:
-
-**Other immutable array methods:**
-
-- `.toSorted()` - immutable sort
-
-- `.toReversed()` - immutable reverse
-
-- `.toSpliced()` - immutable splice
-
-- `.with()` - immutable element replacement
-
----
-
 ## 8. Advanced Patterns
 
 **Impact: LOW**
 
 Advanced patterns for specific cases that require careful implementation.
 
-### 8.1 Do Not Put Effect Events in Dependency Arrays
-
-**Impact: LOW (avoids unnecessary effect re-runs and lint errors)**
-
-Effect Event functions do not have a stable identity. Their identity intentionally changes on every render. Do not include the function returned by `useEffectEvent` in a `useEffect` dependency array. Keep the actual reactive values as dependencies and call the Effect Event from inside the effect body or subscriptions created by that effect.
-
-**Incorrect: Effect Event added as a dependency**
-
-```tsx
-import { useEffect, useEffectEvent } from 'react'
-
-function ChatRoom({ roomId, onConnected }: {
-  roomId: string
-  onConnected: () => void
-}) {
-  const handleConnected = useEffectEvent(onConnected)
-
-  useEffect(() => {
-    const connection = createConnection(roomId)
-    connection.on('connected', handleConnected)
-    connection.connect()
-
-    return () => connection.disconnect()
-  }, [roomId, handleConnected])
-}
-```
-
-Including the Effect Event in dependencies makes the effect re-run every render and triggers the React Hooks lint rule.
-
-**Correct: depend on reactive values, not the Effect Event**
-
-```tsx
-import { useEffect, useEffectEvent } from 'react'
-
-function ChatRoom({ roomId, onConnected }: {
-  roomId: string
-  onConnected: () => void
-}) {
-  const handleConnected = useEffectEvent(onConnected)
-
-  useEffect(() => {
-    const connection = createConnection(roomId)
-    connection.on('connected', handleConnected)
-    connection.connect()
-
-    return () => connection.disconnect()
-  }, [roomId])
-}
-```
-
-Reference: [https://react.dev/reference/react/useEffectEvent#effect-event-in-deps](https://react.dev/reference/react/useEffectEvent#effect-event-in-deps)
-
 ### 8.2 Initialize App Once, Not Per Mount
+
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: LOW-MEDIUM (avoids duplicate init in development)**
 
@@ -3728,6 +3672,10 @@ Reference: [https://react.dev/learn/you-might-not-need-an-effect#initializing-th
 
 ### 8.3 Store Event Handlers in Refs
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/advanced-event-handler-refs`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW (stable subscriptions)**
 
 Store callbacks in refs when used in effects that shouldn't re-subscribe on callback changes.
@@ -3760,9 +3708,13 @@ function useWindowEvent(event: string, handler: (e) => void) {
 
 **Alternative: use `useEffectEvent` if you're on latest React:**
 
-`useEffectEvent` provides a cleaner API for the same pattern: it creates a stable function reference that always calls the latest version of the handler.
+`useEffectEvent` reads the latest handler without making it an effect dependency. Its function identity is not stable, so keep it out of dependency arrays.
 
 ### 8.4 useEffectEvent for Stable Callback Refs
+
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/prefer-use-effect-event`.)
+
+See [the full audit](oxlint/COVERAGE.md) for coverage and remaining judgment.
 
 **Impact: LOW (prevents effect re-runs)**
 

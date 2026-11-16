@@ -8,6 +8,8 @@ A structured repository for creating and maintaining React Best Practices optimi
   - `_sections.md` - Section metadata (titles, impacts, descriptions)
   - `_template.md` - Template for creating new rules
   - `area-description.md` - Individual rule files
+- `lint-replaced/` - Guidelines delegated to verified Oxlint rules, with their original examples and configuration
+- `oxlint/` - Runnable Oxlint configuration, local plugin, and behavior tests
 - `src/` - Build scripts and utilities
 - `metadata.json` - Document metadata (version, organization, abstract)
 - __`AGENTS.md`__ - Compiled output (generated)

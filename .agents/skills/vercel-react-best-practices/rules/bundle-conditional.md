@@ -7,6 +7,10 @@ tags: bundle, conditional-loading, lazy-loading
 
 ## Conditional Module Loading
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Load large data or modules only when a feature is activated.
 
 **Example (lazy-load animation frames):**

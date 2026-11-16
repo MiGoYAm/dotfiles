@@ -7,6 +7,10 @@ tags: rerender, useMemo, optimization
 
 ## Do not wrap a simple expression with a primitive result type in useMemo
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-usememo-simple-expression`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 When an expression is simple (few logical or arithmetical operators) and has a primitive result type (boolean, number, string), do not wrap it in `useMemo`.
 Calling `useMemo` and comparing hook dependencies may consume more resources than the expression itself.
 

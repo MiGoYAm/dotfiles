@@ -7,6 +7,10 @@ tags: client, event-listeners, scrolling, performance, touch, wheel
 
 ## Use Passive Event Listeners for Scrolling Performance
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/client-passive-event-listeners`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Add `{ passive: true }` to touch and wheel event listeners to enable immediate scrolling. Browsers normally wait for listeners to finish to check if `preventDefault()` is called, causing scroll delay.
 
 **Incorrect:**

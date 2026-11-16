@@ -7,6 +7,10 @@ tags: server, cache, react-cache, deduplication
 
 ## Per-Request Deduplication with React.cache()
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-cache-with-object-literal`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Use `React.cache()` for server-side request deduplication. Authentication and database queries benefit most.
 
 **Usage:**

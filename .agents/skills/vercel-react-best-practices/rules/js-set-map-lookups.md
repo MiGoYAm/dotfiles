@@ -7,6 +7,10 @@ tags: javascript, set, map, data-structures, performance
 
 ## Use Set/Map for O(1) Lookups
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `unicorn/prefer-set-has`, `react-doctor/js-set-map-lookups`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Convert arrays to Set/Map for repeated membership checks.
 
 **Incorrect (O(n) per check):**

@@ -7,6 +7,10 @@ tags: rerender, useEffect, events, side-effects, dependencies
 
 ## Put Interaction Logic in Event Handlers
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-event-handler`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 If a side effect is triggered by a specific user action (submit, click, drag), run it in that event handler. Do not model the action as state + effect; it makes effects re-run on unrelated changes and can duplicate the action.
 
 **Incorrect (event modeled as state + effect):**

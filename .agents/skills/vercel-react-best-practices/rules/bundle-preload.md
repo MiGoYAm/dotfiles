@@ -7,6 +7,10 @@ tags: bundle, preload, user-intent, hover
 
 ## Preload Based on User Intent
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Preload heavy bundles before they're needed to reduce perceived latency.
 
 **Example (preload on hover/focus):**

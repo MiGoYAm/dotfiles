@@ -7,6 +7,10 @@ tags: async, await, conditional, optimization
 
 ## Defer Await Until Needed
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/async-defer-await`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Move `await` operations into the branches where they're actually used to avoid blocking code paths that don't need them.
 
 **Incorrect (blocks both branches):**

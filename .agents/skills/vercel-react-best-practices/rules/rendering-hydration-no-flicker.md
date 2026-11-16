@@ -7,6 +7,10 @@ tags: rendering, ssr, hydration, localStorage, flicker
 
 ## Prevent Hydration Mismatch Without Flickering
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-unguarded-browser-global-in-render-or-hook-init`, `react-doctor/no-unguarded-browser-global-at-module-scope`, `react-doctor/no-hydration-branch-on-browser-global`, `react-doctor/no-match-media-in-state-initializer`, `react-doctor/rendering-hydration-no-flicker`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 When rendering content that depends on client-side storage (localStorage, cookies), avoid both SSR breakage and post-hydration flickering by injecting a synchronous script that updates the DOM before React hydrates.
 
 **Incorrect (breaks SSR):**

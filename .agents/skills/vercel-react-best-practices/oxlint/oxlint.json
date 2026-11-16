@@ -1,0 +1,95 @@
+{
+  "plugins": [
+    "react",
+    "unicorn",
+    "nextjs"
+  ],
+  "jsPlugins": [
+    {
+      "name": "react-doctor",
+      "specifier": "oxlint-plugin-react-doctor"
+    },
+    {
+      "name": "next-official",
+      "specifier": "@next/eslint-plugin-next"
+    },
+    "./plugin.mjs"
+  ],
+  "rules": {
+    "react/exhaustive-deps": "error",
+    "react/static-components": "error",
+    "react/no-object-type-as-default-prop": "error",
+    "react/no-deriving-state-in-effects": "error",
+    "unicorn/no-array-sort": [
+      "error",
+      {
+        "allowAfterSpread": true,
+        "allowExpressionStatement": false
+      }
+    ],
+    "nextjs/no-sync-scripts": "error",
+    "vercel-react-best-practices/prefer-functional-state-update": "warn",
+    "react-doctor/no-event-handler": "warn",
+    "react-doctor/rerender-lazy-state-init": "warn",
+    "react-doctor/no-usememo-simple-expression": "warn",
+    "react-doctor/no-dynamic-import-path": "warn",
+    "next-official/no-location-assign-relative-destination": "warn",
+    "react-doctor/async-parallel": "warn",
+    "react-doctor/async-defer-await": "warn",
+    "react-doctor/server-sequential-independent-await": "warn",
+    "react-doctor/client-passive-event-listeners": "warn",
+    "react-doctor/no-fetch-in-effect": "warn",
+    "react-doctor/server-auth-actions": "warn",
+    "react-doctor/server-cache-with-object-literal": "warn",
+    "react-doctor/server-after-nonblocking": "warn",
+    "react-doctor/server-dedup-props": "warn",
+    "react-doctor/server-hoist-static-io": "warn",
+    "react-doctor/rerender-defer-reads-hook": "warn",
+    "react-doctor/rerender-memo-before-early-return": "warn",
+    "react-doctor/rerender-dependencies": "warn",
+    "react-doctor/rerender-derived-state-from-hook": "warn",
+    "react-doctor/rerender-transitions-scroll": "warn",
+    "react-doctor/rendering-hoist-jsx": "warn",
+    "react-doctor/rendering-svg-precision": "warn",
+    "react-doctor/rendering-hydration-mismatch-time": "warn",
+    "react-doctor/rendering-conditional-render": "warn",
+    "react-doctor/js-index-maps": "warn",
+    "react-doctor/js-cache-property-access": "warn",
+    "react-doctor/js-combine-iterations": "warn",
+    "react-doctor/js-length-check-first": "warn",
+    "react-doctor/js-hoist-regexp": "warn",
+    "react-doctor/js-min-max-loop": "warn",
+    "react-doctor/js-flatmap-filter": "warn",
+    "react-doctor/advanced-event-handler-refs": "warn",
+    "react-doctor/prefer-use-effect-event": "warn",
+    "react/globals": "warn",
+    "unicorn/prefer-set-has": "warn",
+    "vercel-react-best-practices/no-render-regexp": "warn",
+    "vercel-react-best-practices/no-repeated-storage-read": "warn",
+    "react-doctor/prefer-dynamic-import": "warn",
+    "react-doctor/no-eager-new-in-use-state-initializer": "warn",
+    "react-doctor/no-unguarded-browser-global-in-render-or-hook-init": "warn",
+    "react-doctor/nextjs-no-use-search-params-without-suspense": "warn",
+    "react-doctor/js-set-map-lookups": "warn",
+    "react-doctor/async-await-in-loop": "warn",
+    "react-doctor/rerender-state-only-in-handlers": "warn",
+    "react-doctor/auth-token-in-web-storage": "warn",
+    "react-doctor/no-unsafe-json-parse": "warn",
+    "react-doctor/js-batch-dom-css": "warn",
+    "react-doctor/no-match-media-in-state-initializer": "warn",
+    "react-doctor/no-nondeterministic-id-value-in-render-body": "warn",
+    "react-doctor/no-unguarded-browser-global-at-module-scope": "warn",
+    "react-doctor/no-hydration-branch-on-browser-global": "warn",
+    "react-doctor/no-locale-format-in-render": "warn",
+    "react-doctor/rendering-hydration-no-flicker": "warn"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "react-doctor": {
+      "portedRuleMode": "curated"
+    }
+  }
+}

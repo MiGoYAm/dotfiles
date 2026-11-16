@@ -7,6 +7,10 @@ tags: server, rsc, parallel-fetching, promise-chaining
 
 ## Parallel Nested Data Fetching
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 When fetching nested data in parallel, chain dependent fetches within each item's promise so a slow item doesn't block the rest.
 
 **Incorrect (a single slow item blocks all nested fetches):**

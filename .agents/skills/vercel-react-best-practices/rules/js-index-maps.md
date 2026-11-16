@@ -7,6 +7,10 @@ tags: javascript, map, indexing, optimization, performance
 
 ## Build Index Maps for Repeated Lookups
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-index-maps`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Multiple `.find()` calls by the same key should use a Map.
 
 **Incorrect (O(n) per lookup):**

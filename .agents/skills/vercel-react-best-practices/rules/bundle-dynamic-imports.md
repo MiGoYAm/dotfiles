@@ -7,6 +7,10 @@ tags: bundle, dynamic-import, code-splitting, next-dynamic
 
 ## Dynamic Imports for Heavy Components
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/prefer-dynamic-import`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Use `next/dynamic` to lazy-load large components not needed on initial render.
 
 **Incorrect (Monaco bundles with main chunk ~300KB):**

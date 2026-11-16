@@ -7,6 +7,10 @@ tags: server, rsc, ssr, concurrency, security, state
 
 ## Avoid Shared Module State for Request Data
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react/globals`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 For React Server Components and client components rendered during SSR, avoid using mutable module-level variables to share request-scoped data. Server renders can run concurrently in the same process. If one render writes to shared module state and another render reads it, you can get race conditions, cross-request contamination, and security bugs where one user's data appears in another user's response.
 
 Treat module scope on the server as process-wide shared memory, not request-local state.

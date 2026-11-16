@@ -7,6 +7,10 @@ tags: async, parallelization, promises, waterfalls
 
 ## Promise.all() for Independent Operations
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/async-parallel`, `react-doctor/async-await-in-loop`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 When async operations have no interdependencies, execute them concurrently using `Promise.all()`.
 
 **Incorrect (sequential execution, 3 round trips):**

@@ -7,6 +7,10 @@ tags: javascript, localStorage, storage, caching, performance
 
 ## Cache Storage API Calls
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `vercel-react-best-practices/no-repeated-storage-read`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 `localStorage`, `sessionStorage`, and `document.cookie` are synchronous and expensive. Cache reads in memory.
 
 **Incorrect (reads storage on every call):**

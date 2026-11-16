@@ -7,6 +7,10 @@ tags: rendering, preload, preconnect, prefetch, resource-hints
 
 ## Use React DOM Resource Hints
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (reduces load time for critical resources)**
 
 React DOM provides APIs to hint the browser about resources it will need. These are especially useful in server components to start loading resources before the client even receives the HTML.

@@ -7,6 +7,10 @@ tags: rendering, script, defer, async, performance
 
 ## Use defer or async on Script Tags
 
+(Skill: `vercel-react-best-practices`; lint: Delegated; `nextjs/no-sync-scripts`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (eliminates render-blocking)**
 
 Script tags without `defer` or `async` block HTML parsing while the script downloads and executes. This delays First Contentful Paint and Time to Interactive.

@@ -7,6 +7,10 @@ tags: react, hooks, useState, performance, initialization
 
 ## Use Lazy State Initialization
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-lazy-state-init`, `react-doctor/no-eager-new-in-use-state-initializer`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Pass a function to `useState` for expensive initial values. Without the function form, the initializer runs on every render even though the value is only used once.
 
 **Incorrect (runs on every render):**

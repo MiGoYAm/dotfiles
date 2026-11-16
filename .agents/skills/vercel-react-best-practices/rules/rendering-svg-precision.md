@@ -7,6 +7,10 @@ tags: rendering, svg, optimization, svgo
 
 ## Optimize SVG Precision
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rendering-svg-precision`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Reduce SVG coordinate precision to decrease file size. The optimal precision depends on the viewBox size, but in general reducing precision should be considered.
 
 **Incorrect (excessive precision):**

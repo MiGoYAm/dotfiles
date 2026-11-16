@@ -7,6 +7,10 @@ tags: api-routes, server-actions, waterfalls, parallelization
 
 ## Prevent Waterfall Chains in API Routes
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-sequential-independent-await`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 In API routes and Server Actions, start independent operations immediately, even if you don't await them yet.
 
 **Incorrect (config waits for auth, data waits for both):**

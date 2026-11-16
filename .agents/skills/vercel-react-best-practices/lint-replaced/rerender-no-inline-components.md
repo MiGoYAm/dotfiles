@@ -7,6 +7,10 @@ tags: rerender, components, remount, performance
 
 ## Don't Define Components Inside Components
 
+(Skill: `vercel-react-best-practices`; lint: Delegated; `react/static-components`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: HIGH (prevents remount on every render)**
 
 Defining a component inside another component creates a new component type on every render. React sees a different component each time and fully remounts it, destroying all state and DOM.

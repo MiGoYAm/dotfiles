@@ -7,6 +7,10 @@ tags: advanced, hooks, refs, event-handlers, optimization
 
 ## Store Event Handlers in Refs
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/advanced-event-handler-refs`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Store callbacks in refs when used in effects that shouldn't re-subscribe on callback changes.
 
 **Incorrect (re-subscribes on every render):**
@@ -52,4 +56,4 @@ function useWindowEvent(event: string, handler: (e) => void) {
 }
 ```
 
-`useEffectEvent` provides a cleaner API for the same pattern: it creates a stable function reference that always calls the latest version of the handler.
+`useEffectEvent` reads the latest handler without making it an effect dependency. Its function identity is not stable, so keep it out of dependency arrays.

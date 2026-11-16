@@ -7,6 +7,10 @@ tags: react, hooks, useState, useCallback, callbacks, closures
 
 ## Use Functional setState Updates
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `vercel-react-best-practices/prefer-functional-state-update`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 When updating state based on the current state value, use the functional update form of setState instead of directly referencing the state variable. This prevents stale closures, eliminates unnecessary dependencies, and creates stable callback references.
 
 **Incorrect (requires state as dependency):**

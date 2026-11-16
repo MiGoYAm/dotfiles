@@ -7,6 +7,10 @@ tags: rerender, derived-state, media-query, optimization
 
 ## Subscribe to Derived State
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-derived-state-from-hook`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Subscribe to derived boolean state instead of continuous values to reduce re-render frequency.
 
 **Incorrect (re-renders on every pixel change):**

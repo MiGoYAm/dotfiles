@@ -7,6 +7,10 @@ tags: javascript, arrays, flatMap, filter, performance
 
 ## Use flatMap to Map and Filter in One Pass
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-flatmap-filter`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: LOW-MEDIUM (eliminates intermediate array)**
 
 Chaining `.map().filter(Boolean)` creates an intermediate array and iterates twice. Use `.flatMap()` to transform and filter in a single pass.
@@ -22,9 +26,10 @@ const userNames = users
 **Correct (1 iteration, no intermediate array):**
 
 ```typescript
-const userNames = users.flatMap(user =>
-  user.isActive ? [user.name] : []
-)
+const userNames = users.flatMap(user => {
+  const name = user.isActive ? user.name : null
+  return name ? [name] : []
+})
 ```
 
 **More examples:**
@@ -37,9 +42,10 @@ const emails = responses
   .filter(Boolean)
 
 // After
-const emails = responses.flatMap(r =>
-  r.success ? [r.data.email] : []
-)
+const emails = responses.flatMap(r => {
+  const email = r.success ? r.data.email : null
+  return email ? [email] : []
+})
 
 // Parse and filter valid numbers
 // Before

@@ -7,6 +7,10 @@ tags: bundle, third-party, analytics, defer
 
 ## Defer Non-Critical Third-Party Libraries
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Analytics, logging, and error tracking don't block user interaction. Load them after hydration.
 
 **Incorrect (blocks initial bundle):**

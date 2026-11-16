@@ -7,6 +7,10 @@ tags: javascript, performance, idle, scheduling, analytics
 
 ## Defer Non-Critical Work with requestIdleCallback
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: MEDIUM (keeps UI responsive during background tasks)**
 
 Use `requestIdleCallback()` to schedule non-critical work during browser idle periods. This keeps the main thread free for user interactions and animations, reducing jank and improving perceived performance.

@@ -7,6 +7,10 @@ tags: rerender, memo, useMemo, optimization
 
 ## Extract to Memoized Components
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-memo-before-early-return`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Extract expensive work into memoized components to enable early returns before computation.
 
 **Incorrect (computes avatar even when loading):**

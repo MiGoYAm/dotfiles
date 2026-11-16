@@ -7,6 +7,10 @@ tags: client, swr, event-listeners, subscription
 
 ## Deduplicate Global Event Listeners
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Use `useSWRSubscription()` to share global event listeners across component instances.
 
 **Incorrect (N instances = N listeners):**

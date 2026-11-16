@@ -7,6 +7,10 @@ tags: rendering, css, content-visibility, long-lists
 
 ## CSS content-visibility for Long Lists
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Apply `content-visibility: auto` to defer off-screen rendering.
 
 **CSS:**

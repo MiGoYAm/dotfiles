@@ -7,6 +7,10 @@ tags: server, rsc, parallel-fetching, composition
 
 ## Parallel Data Fetching with Component Composition
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 React Server Components execute sequentially within a tree. Restructure with composition to parallelize data fetching.
 
 **Incorrect (Sidebar waits for Page's fetch to complete):**

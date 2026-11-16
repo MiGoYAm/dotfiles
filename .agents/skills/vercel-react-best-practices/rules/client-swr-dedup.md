@@ -7,6 +7,10 @@ tags: client, swr, deduplication, data-fetching
 
 ## Use SWR for Automatic Deduplication
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-fetch-in-effect`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 SWR enables request deduplication, caching, and revalidation across component instances.
 
 **Incorrect (no deduplication, each instance fetches):**

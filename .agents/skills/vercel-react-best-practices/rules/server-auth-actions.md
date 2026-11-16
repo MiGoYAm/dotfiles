@@ -7,6 +7,10 @@ tags: server, server-actions, authentication, security, authorization
 
 ## Authenticate Server Actions Like API Routes
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/server-auth-actions`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 **Impact: CRITICAL (prevents unauthorized access to server mutations)**
 
 Server Actions (functions with `"use server"`) are exposed as public endpoints, just like API routes. Always verify authentication and authorization **inside** each Server Action—do not rely solely on middleware, layout guards, or page-level checks, as Server Actions can be invoked directly.

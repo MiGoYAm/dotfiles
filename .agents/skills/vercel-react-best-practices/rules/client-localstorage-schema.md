@@ -7,6 +7,10 @@ tags: client, localStorage, storage, versioning, data-minimization
 
 ## Version and Minimize localStorage Data
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/auth-token-in-web-storage`, `react-doctor/no-unsafe-json-parse`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Add version prefix to keys and store only needed fields. Prevents schema conflicts and accidental storage of sensitive data.
 
 **Incorrect:**

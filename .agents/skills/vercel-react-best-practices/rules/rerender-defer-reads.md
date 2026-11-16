@@ -7,6 +7,10 @@ tags: rerender, searchParams, localStorage, optimization
 
 ## Defer State Reads to Usage Point
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/rerender-defer-reads-hook`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Don't subscribe to dynamic state (searchParams, localStorage) if you only read it inside callbacks.
 
 **Incorrect (subscribes to all searchParams changes):**

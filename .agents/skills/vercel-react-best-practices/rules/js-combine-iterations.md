@@ -7,6 +7,10 @@ tags: javascript, arrays, loops, performance
 
 ## Combine Multiple Array Iterations
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/js-combine-iterations`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Multiple `.filter()` or `.map()` calls iterate the array multiple times. Combine into one loop.
 
 **Incorrect (3 iterations):**

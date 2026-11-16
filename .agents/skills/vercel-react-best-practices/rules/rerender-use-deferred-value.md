@@ -7,6 +7,10 @@ tags: rerender, useDeferredValue, optimization, concurrent
 
 ## Use useDeferredValue for Expensive Derived Renders
 
+(Skill: `vercel-react-best-practices`; lint: Review.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 When user input triggers expensive computations or renders, use `useDeferredValue` to keep the input responsive. The deferred value lags behind, allowing React to prioritize the input update and render the expensive result when idle.
 
 **Incorrect (input feels laggy while filtering):**

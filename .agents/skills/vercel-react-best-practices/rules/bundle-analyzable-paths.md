@@ -7,6 +7,10 @@ tags: bundle, nextjs, vite, webpack, rollup, esbuild, path
 
 ## Prefer Statically Analyzable Paths
 
+(Skill: `vercel-react-best-practices`; lint: Partial; `react-doctor/no-dynamic-import-path`.)
+
+See [the full audit](../oxlint/COVERAGE.md) for coverage and remaining judgment.
+
 Build tools work best when import and file-system paths are obvious at build time. If you hide the real path inside a variable or compose it too dynamically, the tool either has to include a broad set of possible files, warn that it cannot analyze the import, or widen file tracing to stay safe.
 
 Prefer explicit maps or literal paths so the set of reachable files stays narrow and predictable. This is the same rule whether you are choosing modules with `import()` or reading files in server/build code.
