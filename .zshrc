@@ -61,3 +61,7 @@ if [[ -o interactive ]]; then
   command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
   command -v wt >/dev/null 2>&1 && eval "$(wt config shell init zsh)"
 fi
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/migoyam/.local/bin:$PATH"

@@ -19,12 +19,5 @@
         "command": ["npx", "-y", "@upstash/context7-mcp"],
       },
     },
-  },
-  "permissions": [
-    {
-      "action": "websearch",
-      "resource": "*",
-      "effect": "allow",
-    },
-  ],
+  }
 }

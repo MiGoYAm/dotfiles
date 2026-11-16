@@ -29,15 +29,6 @@
       "installedAt": "2026-09-03T13:32:50.697Z",
       "updatedAt": "2026-11-12T18:09:48.687Z"
     },
-    "thermo-nuclear-code-quality-review": {
-      "source": "cursor/plugins",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/cursor/plugins.git",
-      "skillPath": "cursor-team-kit/skills/thermo-nuclear-code-quality-review/SKILL.md",
-      "skillFolderHash": "d9c8935dd560b3b6f5941247d04a1843f8c7cc35",
-      "installedAt": "2026-09-03T13:30:24.911Z",
-      "updatedAt": "2026-09-05T11:50:56.117Z"
-    },
     "vercel-composition-patterns": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
@@ -65,34 +56,6 @@
       "skillFolderHash": "22563ae21af6e63ab954e178703f74fb709eb68c",
       "installedAt": "2026-09-03T13:32:50.697Z",
       "updatedAt": "2026-09-05T11:54:46.846Z"
-    },
-    "grill-with-docs": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/grill-with-docs/SKILL.md",
-      "skillFolderHash": "eedaf2562c83155115e9c649fa3ecaac2e10e81d",
-      "pluginName": "mattpocock-skills",
-      "installedAt": "2026-09-03T13:50:50.998Z",
-      "updatedAt": "2026-09-05T11:51:01.131Z"
-    },
-    "codebase-design": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/codebase-design/SKILL.md",
-      "skillFolderHash": "4cbe1c131e1ea54109cb1e4e5f3c505810db6606",
-      "installedAt": "2026-09-03T14:25:16.416Z",
-      "updatedAt": "2026-11-12T18:09:48.814Z"
-    },
-    "domain-modeling": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/engineering/domain-modeling/SKILL.md",
-      "skillFolderHash": "ea30ee454ba264543dbe40737973b1a5afb9f0e6",
-      "installedAt": "2026-09-03T14:25:16.418Z",
-      "updatedAt": "2026-10-01T13:28:09.995Z"
     },
     "grilling": {
       "source": "mattpocock/skills",
@@ -223,6 +186,42 @@
       "skillFolderHash": "b5e07dae8b3153b653a5d70a94d2ab3884bd516e",
       "installedAt": "2026-11-13T12:20:02.988Z",
       "updatedAt": "2026-11-13T12:20:02.988Z"
+    },
+    "sol-loop": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/sol-loop/SKILL.md",
+      "skillFolderHash": "9d2b1c1b00bf54e1b4e6e6243aec6d39037ce624",
+      "installedAt": "2026-11-14T11:41:39.243Z",
+      "updatedAt": "2026-11-14T11:41:39.243Z"
+    },
+    "full-send": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/full-send/SKILL.md",
+      "skillFolderHash": "de21961fbb3f6892ab4ea1fb2b58e0f95debec87",
+      "installedAt": "2026-11-14T11:42:10.602Z",
+      "updatedAt": "2026-11-14T11:42:10.602Z"
+    },
+    "full-stop": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/full-stop/SKILL.md",
+      "skillFolderHash": "16f14dba1ab91a1f7fbcce387b6b96cdd15fc4f5",
+      "installedAt": "2026-11-14T11:42:23.462Z",
+      "updatedAt": "2026-11-14T11:42:23.462Z"
+    },
+    "babysit-pr": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/babysit-pr/SKILL.md",
+      "skillFolderHash": "7b4e3e4e0f8b53a1fd049d6a27d5f998395ace52",
+      "installedAt": "2026-11-14T11:43:05.511Z",
+      "updatedAt": "2026-11-14T11:43:05.511Z"
     }
   },
   "dismissed": {
@@ -234,11 +233,13 @@
     "codex",
     "cursor",
     "droid",
+    "fx",
     "gemini-cli",
     "github-copilot",
     "kilo",
     "kimi-code-cli",
     "opencode",
+    "pi",
     "warp",
     "zed"
   ]
