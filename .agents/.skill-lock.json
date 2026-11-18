@@ -38,15 +38,6 @@
       "installedAt": "2026-09-03T13:30:24.911Z",
       "updatedAt": "2026-09-05T11:51:04.801Z"
     },
-    "vercel-react-best-practices": {
-      "source": "vercel-labs/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
-      "skillPath": "skills/react-best-practices/SKILL.md",
-      "skillFolderHash": "343db72180d05814949fef7d46be96b5c6ee86b3",
-      "installedAt": "2026-09-03T13:30:24.911Z",
-      "updatedAt": "2026-09-05T11:51:04.802Z"
-    },
     "web-animation-design": {
       "source": "connorads/dotfiles",
       "sourceType": "github",
@@ -101,9 +92,10 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/cursor/plugins.git",
       "skillPath": "pstack/skills/unslop/SKILL.md",
-      "skillFolderHash": "4e572dd70e5557f490e3991c52ea58f0dcee8936",
+      "skillFolderHash": "3319d5baa095167501a128703a008446dd099d0c",
       "installedAt": "2026-10-01T14:02:30.657Z",
-      "updatedAt": "2026-11-12T18:09:50.376Z"
+      "updatedAt": "2026-11-18T20:27:07.843Z",
+      "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
     },
     "typescript-best-practices": {
       "source": "cursor/plugins",
@@ -119,18 +111,20 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/cursor/plugins.git",
       "skillPath": "pstack/skills/principle-test-behavior-not-implementation/SKILL.md",
-      "skillFolderHash": "7fa3d5dba8496dcd08278a99903a2dfb58a2e179",
+      "skillFolderHash": "76d920dd320db21e8e8bc2a316554acfb1d23263",
       "installedAt": "2026-10-11T08:18:31.948Z",
-      "updatedAt": "2026-11-12T18:09:50.830Z"
+      "updatedAt": "2026-11-18T20:27:08.083Z",
+      "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
     },
     "principle-type-system-discipline": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "sourceUrl": "https://github.com/cursor/plugins.git",
       "skillPath": "pstack/skills/principle-type-system-discipline/SKILL.md",
-      "skillFolderHash": "32850aaddd70478a6dacb153bbcef8532bf7d626",
+      "skillFolderHash": "5847636501d4a92dc1173a30fc09475fe22fbbca",
       "installedAt": "2026-10-11T08:18:31.956Z",
-      "updatedAt": "2026-11-12T18:09:51.077Z"
+      "updatedAt": "2026-11-18T20:27:08.313Z",
+      "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
     },
     "principle-laziness-protocol": {
       "source": "cursor/plugins",
@@ -164,18 +158,20 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/cursor/plugins.git",
       "skillPath": "pstack/skills/principle-minimize-reader-load/SKILL.md",
-      "skillFolderHash": "f64929f93ffd334f36699b83f53ee7155c4a2063",
+      "skillFolderHash": "83722d6d8707f842217b7e1e611b77933c1eb4a8",
       "installedAt": "2026-10-11T21:33:29.126Z",
-      "updatedAt": "2026-11-12T18:09:51.986Z"
+      "updatedAt": "2026-11-18T20:27:08.491Z",
+      "commit": "35a90942a7f02e1ebbc2443643179815f2147954"
     },
     "break-ui": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/break-ui/SKILL.md",
-      "skillFolderHash": "f2a3441d4cf14df060ee363e155502a4818b5f8d",
+      "skillFolderHash": "3366af548a363c2012e53503cbcf718dc07f047f",
       "installedAt": "2026-11-12T20:34:28.878Z",
-      "updatedAt": "2026-11-12T20:34:50.519Z"
+      "updatedAt": "2026-11-18T20:27:08.518Z",
+      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c"
     },
     "make-evergreen": {
       "source": "kosciak9/wave-os",
