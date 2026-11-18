@@ -1,15 +1,6 @@
 {
   "version": 3,
   "skills": {
-    "btca-local": {
-      "source": "davis7dotsh/better-context",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/davis7dotsh/better-context.git",
-      "skillPath": "skills/btca-local/SKILL.md",
-      "skillFolderHash": "672717a655579407e9fb716f0b28f8b8a88d9a6a",
-      "installedAt": "2026-08-31T18:51:04.834Z",
-      "updatedAt": "2026-09-05T11:50:58.411Z"
-    },
     "frontend-design": {
       "source": "anthropics/skills",
       "sourceType": "github",
