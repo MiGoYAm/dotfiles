@@ -65,3 +65,6 @@ fi
 
 # Added by Antigravity CLI installer
 export PATH="/Users/migoyam/.local/bin:$PATH"
+
+# Vite+ bin (https://viteplus.dev)
+. "/Users/migoyam/.vite-plus/env"

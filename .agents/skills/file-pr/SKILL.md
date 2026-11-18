@@ -1,6 +1,6 @@
 ---
-name: pr-guidelines
-description: Use when creating, drafting, preparing, formatting, or replying to PR comments.
+name: file-pr
+description: Use when creating or updating a pull request, writing its description, or replying to PR comments.
 ---
 
 # Pull Request Guidelines

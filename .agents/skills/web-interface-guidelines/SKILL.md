@@ -1,6 +1,6 @@
 ---
 name: web-interface-guidelines
-description: Review UI code for Vercel Web Interface Guidelines compliance
+description: Web Interface Guidelines
 ---
 
 # Web Interface Guidelines
@@ -19,6 +19,8 @@ description: Review UI code for Vercel Web Interface Guidelines compliance
 - Use semantic HTML (`<button>`, `<a>`, `<label>`, `<table>`) before ARIA
 - Headings hierarchical `<h1>`–`<h6>`; include skip link for main content
 - `scroll-margin-top` on heading anchors
+- Meaningful media needs captions, transcripts, or descriptions as applicable
+- Media controls need keyboard support; decorative media needs assistive-tech hiding
 
 ### Focus States
 
@@ -26,6 +28,7 @@ description: Review UI code for Vercel Web Interface Guidelines compliance
 - Never `outline-none` / `outline: none` without focus replacement
 - Use `:focus-visible` over `:focus` (avoid focus ring on click)
 - Group focus with `:focus-within` for compound controls
+- Sticky headers/footers/overlays must not cover the focused element
 
 ### Forms
 
@@ -49,11 +52,13 @@ description: Review UI code for Vercel Web Interface Guidelines compliance
 - Set correct `transform-origin`
 - SVG: transforms on `<g>` wrapper with `transform-box: fill-box; transform-origin: center`
 - Animations interruptible—respond to user input mid-animation
+- Autoplay motion >5 seconds alongside other content needs pause, stop, or hide controls
+- Muted decorative loops must stop under `prefers-reduced-motion`
 
 ### Typography
 
 - `…` not `...`
-- Curly quotes `"` `"` not straight `"`
+- Curly quotes `“` `”` not straight `"`
 - Non-breaking spaces: `10&nbsp;MB`, `⌘&nbsp;K`, brand names
 - Loading states end with `…`: `"Loading…"`, `"Saving…"`
 - `font-variant-numeric: tabular-nums` for number columns/comparisons
@@ -80,6 +85,8 @@ description: Review UI code for Vercel Web Interface Guidelines compliance
 - Prefer uncontrolled inputs; controlled inputs must be cheap per keystroke
 - Add `<link rel="preconnect">` for CDN/asset domains
 - Critical fonts: `<link rel="preload" as="font">` with `font-display: swap`
+- Prefer `<video autoplay muted loop playsinline>` over animated GIF; provide a still alternative
+- Short non-essential loops: Safari H.264 MP4 `<picture>` source, `prefers-reduced-motion` media condition, and still fallback
 
 ### Navigation & State
 
@@ -93,7 +100,9 @@ description: Review UI code for Vercel Web Interface Guidelines compliance
 - `touch-action: manipulation` (prevents double-tap zoom delay)
 - `-webkit-tap-highlight-color` set intentionally
 - `overscroll-behavior: contain` in modals/drawers/sheets
+- Page rubber-band suppression: `overscroll-behavior: none` on `<html>` inside `@media (pointer: fine)`; keep coarse-pointer page defaults for pull-to-refresh. Test hybrid touch devices: `pointer` describes the primary input, and `none` also disables scroll chaining and native swipe navigation
 - During drag: disable text selection, `inert` on dragged elements
+- Drag/swipe/pinch/path gestures need tap/click and keyboard alternatives unless essential
 - `autoFocus` sparingly—desktop only, single primary input; avoid on mobile
 
 ### Safe Areas & Layout
@@ -113,6 +122,7 @@ description: Review UI code for Vercel Web Interface Guidelines compliance
 - Dates/times: use `Intl.DateTimeFormat` not hardcoded formats
 - Numbers/currency: use `Intl.NumberFormat` not hardcoded formats
 - Detect language via `Accept-Language` / `navigator.languages`, not IP
+- Brand names, code tokens, identifiers: wrap with `translate="no"` to prevent garbled auto-translation
 
 ### Hydration Safety
 
@@ -149,3 +159,5 @@ description: Review UI code for Vercel Web Interface Guidelines compliance
 - Icon buttons without `aria-label`
 - Hardcoded date/number formats (use `Intl.*`)
 - `autoFocus` without clear justification
+- Animated GIF when compressed video is suitable
+- Gesture-only action without tap/click and keyboard alternative
