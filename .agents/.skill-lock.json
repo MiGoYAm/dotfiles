@@ -210,6 +210,36 @@
       "skillFolderHash": "d75a393c9a371295c6d6be46c34938e76ef21184",
       "installedAt": "2026-11-18T19:48:42.402Z",
       "updatedAt": "2026-11-18T19:48:42.402Z"
+    },
+    "principle-boundary-discipline": {
+      "source": "cursor/plugins",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cursor/plugins.git",
+      "skillPath": "pstack/skills/principle-boundary-discipline/SKILL.md",
+      "skillFolderHash": "d7c9f885052de6177eb888c51c22285f4d225278",
+      "installedAt": "2026-11-12T15:15:31.000Z",
+      "updatedAt": "2026-11-22T20:04:15.457Z",
+      "commit": "7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9"
+    },
+    "principle-model-the-domain": {
+      "source": "cursor/plugins",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cursor/plugins.git",
+      "skillPath": "pstack/skills/principle-model-the-domain/SKILL.md",
+      "skillFolderHash": "90e1d94729175ce6899cc57e5b0250dbf73de8b4",
+      "installedAt": "2026-11-12T15:15:31.000Z",
+      "updatedAt": "2026-11-22T20:04:15.863Z",
+      "commit": "7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9"
+    },
+    "principle-separate-before-serializing-shared-state": {
+      "source": "cursor/plugins",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cursor/plugins.git",
+      "skillPath": "pstack/skills/principle-separate-before-serializing-shared-state/SKILL.md",
+      "skillFolderHash": "15bc5fb33e9b5848d3400857ebeac175044dc6c8",
+      "installedAt": "2026-11-12T15:15:31.000Z",
+      "updatedAt": "2026-11-22T20:04:16.138Z",
+      "commit": "7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9"
     }
   },
   "dismissed": {
