@@ -1,0 +1,52 @@
+{
+  "allowAllClaudeAiMcps": false,
+  "syncClaudeAiSkills": false,
+  "syncClaudeAiPlugins": false,
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_CODE_MODE": "1"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "permissions": {
+    "deny": [
+      "EnterPlanMode",
+      "ExitPlanMode",
+      "EnterWorktree",
+      "ExitWorktree",
+      "DesignSync",
+      "NotebookEdit",
+      "SendMessage",
+      "PushNotification",
+      "RemoteTrigger",
+      "ReportFindings",
+      "ScheduleWakeup",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "SendFeedback",
+      "EndConversation",
+      "Agent(Plan)",
+      "Agent(claude-code-guide)",
+      "Agent(statusline-setup)"
+    ]
+  },
+  "disableClaudeAiConnectors": true,
+  "disableBundledSkills": true,
+  "disableRemoteControl": true,
+  "disableWorkflows": true,
+  "disableArtifact": true,
+  "enabledPlugins": {
+    "easel": false,
+    "claude.ai": false,
+    "cc-plugin-easel@builtin": false,
+    "cc-plugin-telemetry@builtin": false,
+    "cc-plugin-plugin-authoring@builtin": false,
+    "cc-plugin-privacy@builtin": false
+  },
+  "promptSuggestionEnabled": false,
+  "autoMemoryEnabled": false,
+  "autoCompactEnabled": true
+}

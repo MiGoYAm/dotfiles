@@ -136,6 +136,7 @@ three_finger_drag = false
 context7_api_key = { env = "CONTEXT7_API_KEY", description = "Context7 MCP API key" }
 
 [dotfiles]
+"~/.claude/settings.json/shared" = { source = ".claude/settings.json", merge = true }
 "~/.codex/config.toml/shared" = { source = ".codex/shared.toml", merge = true }
 "~/.codex/config.toml/context7" = { source = ".codex/context7.toml", template = "tera", merge = "missing"}
 "~/.zshrc" = {}
@@ -154,8 +155,10 @@ context7_api_key = { env = "CONTEXT7_API_KEY", description = "Context7 MCP API k
 "~/.config/quickshell" = {}
 
 "~/.agents" = {}
+"~/.claude/skills/" = { source = "~/dotfiles/.agents/skills", mode ="symlink-each"}
 "~/.config/opencode/opencode.jsonc" = {}
 "~/.config/opencode/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
+"~/.claude/CLAUDE.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 "~/.codex/AGENTS.md" = { source = "~/dotfiles/.agents/AGENTS.md" }
 
 [tasks.login-atuin]
