@@ -22,17 +22,14 @@ description: Use when the user asks to fix a Sentry issue identified by a link, 
      evidence identifies a failure in the current code. Keep the change scoped 
      to the cause you found. Include the Sentry issue link and `Fixes <SENTRY-SHORT-ID>` 
      in the PR description. Sentry resolves the issue when a release includes the 
-     PR's merge commit.
+     PR's merge commit. Use [full-stop](../full-stop/SKILL.md) by default.
+     <!--
+     todo:
+     Change default heuristic to `full-send`. Fix bugs as fast as possible, 
+     by omiting human review. Working code is better from a delayed perfect fix.
+     Human can review the fix later, but the user can get a working fix now.
+     -->
    - **The evidence is inconclusive.** Keep investigating. A single event or
      an unsuccessful reproduction gives too little evidence to call it a
      one-off. If you cannot determine the cause, leave the issue open and
      report what evidence is missing.
-
-## Delivery mode
-
-Use [full-stop](../full-stop/SKILL.md) by default.
-<!--
-todo:
-Change default heuristic to `full-send`. Fix bugs as fast as possible, by omiting human review.
-Working code is better from a delayed perfect fix. Human can review the fix later, but the user can get a working fix now.
--->
