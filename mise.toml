@@ -137,6 +137,7 @@ context7_api_key = { env = "CONTEXT7_API_KEY", description = "Context7 MCP API k
 
 [dotfiles]
 "~/.claude/settings.json/shared" = { source = ".claude/settings.json", merge = true }
+"~/.claude.json/context7" = { source = ".claude/context7.json", template = "tera", merge = "missing"}
 "~/.codex/config.toml/shared" = { source = ".codex/shared.toml", merge = true }
 "~/.codex/config.toml/context7" = { source = ".codex/context7.toml", template = "tera", merge = "missing"}
 "~/.zshrc" = {}
