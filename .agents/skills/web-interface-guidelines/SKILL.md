@@ -1,6 +1,6 @@
 ---
 name: web-interface-guidelines
-description: Web Interface Guidelines
+description: Apply when reviewing or implementing web interfaces, including accessibility, performance, and interaction guidelines.
 ---
 
 # Web Interface Guidelines

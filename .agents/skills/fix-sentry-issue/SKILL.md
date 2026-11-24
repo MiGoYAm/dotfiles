@@ -1,13 +1,16 @@
 ---
 name: fix-sentry-issue
-description: Use when the user asks to fix a Sentry issue identified by a link, issue ID, or event ID.
+description: Apply when fixing a Sentry issue identified by a link, issue ID, or event ID.
 ---
 
 # Fix Sentry issue
 
 1. **Identify the issue.** Use Sentry MCP to inspect the issue and the
    reported event. Read relevant breadcrumbs and related events as needed.
-2. **Decide whether the code needs a fix.** Locate the failure in the affected release. 
+2. **Find sibling issues.** Search for similar issues whose stack traces
+   hit the same file or function. A sibling may share the cause and a fix
+   which matters for issue resolution in PR description.
+3. **Decide whether the code needs a fix.** Locate the failure in the affected release. 
    Compare that code with the latest target branch and check Git history for a fix. 
    Check which releases still report the error. When possible, reproduce it.
    - **The target branch already contains a fix.** Verify that the change
@@ -29,6 +32,10 @@ description: Use when the user asks to fix a Sentry issue identified by a link, 
      by omiting human review. Working code is better from a delayed perfect fix.
      Human can review the fix later, but the user can get a working fix now.
      -->
+   - **The cause is external.** The failure originates outside this code,
+     for example a database connection error or an HTTP 500 from another
+     service. Check that the code handles that failure correctly. Then look for the
+     cause and/or fix on the external side.
    - **The evidence is inconclusive.** Keep investigating. A single event or
      an unsuccessful reproduction gives too little evidence to call it a
      one-off. If you cannot determine the cause, leave the issue open and
