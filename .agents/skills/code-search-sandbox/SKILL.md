@@ -1,10 +1,6 @@
 ---
 name: code-search-sandbox
-description: Apply when cloning temporary repos for various reasons.
+description: Use when reading or searching code from a repo outside the workspace, such as a dependency's source or an upstream project.
 ---
 
-1. Use ~/.btca/agent/sandbox as the place where you clone/search repos
-2. If the repo(s) are already in the work dir ~/.btca/agent/sandbox update them, otherwise clone them. Clone the main branch by default.
-3. Search the repo for the information you need.
-
-Do not delete cloned repos. ~/.btca/agent/sandbox is a cache.
+Clone into `~/.btca/agent/sandbox/`. It is a persistent cache shared across sessions: if the repo is already there, pull the default branch instead of re-cloning, and leave clones in place when done.

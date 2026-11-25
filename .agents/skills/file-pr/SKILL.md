@@ -45,4 +45,4 @@ because the GraphQL rate limit is used up, open it through REST with
 `gh api repos/<owner>/<repo>/pulls -f title=... -f head=... -f base=... -F body=@<file>`. If the user also asked
 to babysit it, continue with the `babysit-pr` skill.
 
-Fix up or squash follow-up commits into the commits they amend when they change code or behavior introduced in the same PR. This applies to `style:`, `refactor:`, `fix:`, and similar prefixes; judge by the change, not the prefix. Keep independent changes as separate commits.
+Squash follow-up commits into the commit they amend when they change code introduced in the same PR, whatever their prefix. Keep independent changes as separate commits.

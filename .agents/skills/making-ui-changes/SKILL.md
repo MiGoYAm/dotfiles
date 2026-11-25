@@ -1,27 +1,16 @@
 ---
 name: making-ui-changes
-description: Apply when making UI changes.
+description: Use when a change alters what the user sees or how an interface behaves.
 ---
 
-# Making UI Changes
+# Making UI changes
 
-When a task changes what the user sees or how an interface behaves, finish it by
-showing the change in the running app:
+A UI change is done when the user has seen it running. Run the current code, click through what changed yourself, then hand over:
 
-- For a design request, iterate with the user before polishing the code: send a
-  clickable link to the running prototype and screenshots, and run code checks,
-  code review and the PR flow only after they accept the design.
-- Run the changed version, open it yourself, and click through what changed.
-- In your reply, give a preview link and embed screenshots of the running app 
-  showing each changed view and state (Markdown image links with absolute paths).
-  Add a short video when the change is about interaction, animation, or a flow that 
-  stills do not show well. Say briefly what changed, how to check it, and what is 
-  still missing.
-- Always give a web page's link as its `*.opentunnel.xyz` URL, never `localhost`. 
-  Give the URL that `opentunnel route add <port> --name <branch>` prints. 
-  Running it again is harmless.
-- Only screenshots and videos of the current code count; a build, passing tests,
-  or a mockup is not a substitute. Retake them when the UI changes again. Use
-  sample data and keep secrets and private data out of them.
-- If you cannot run or capture the UI, say so and fix that first. Do not hand
-  over a UI change without showing it.
+- A preview link: the `*.opentunnel.xyz` URL printed by `opentunnel route add <port> --name <branch>` (idempotent; `localhost` is unreachable for the user).
+- Screenshots of each changed view and state, embedded as Markdown images with absolute paths. Add a short video when the change is an interaction, animation, or flow that stills don't convey.
+- A few lines on what changed, how to check it, and what is still missing.
+
+Captures must come from the current code with sample data; retake them after further UI edits. A build, passing tests, or a mockup is not evidence. If you can't run or capture the UI, make that the first thing you fix, and say so if you can't.
+
+For a design request, iterate on the running prototype with the user first; code checks, review, and the PR flow come after they accept the design.
