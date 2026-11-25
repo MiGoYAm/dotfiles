@@ -1,6 +1,17 @@
 model_verbosity = "low"
 # personality = "pragmatic"
 
+[analytics]
+enabled = false
+
+[feedback]
+enabled = false
+
+[otel]
+exporter = "none"
+trace_exporter = "none"
+metrics_exporter = "none"
+
 [features]
 memories = false
 image_generation = false
